@@ -1,0 +1,99 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "firstname": "Marar",
+      "lastname": "Soufiane",
+      "email": "soufiane.marar1@gmail.com",
+      "username": "soufiane",
+      "password": "123456",
+      "role_id": 1
+    },
+    {
+      "id": 2,
+      "firstname": "Elatif",
+      "lastname": "Hamza",
+      "email": "H.elatif@hotmail.com",
+      "username": "hamza",
+      "password": "123456",
+      "role_id": 2
+    },
+    {
+      "id": 3,
+      "firstname": "Atir",
+      "lastname": "Yassine",
+      "email": "y.atir@yahoo.com",
+      "username": "yassine",
+      "password": "123456",
+      "role_id": 3
+    },
+    {
+      "firstname": "said",
+      "lastname": "marar",
+      "email": "said@yahoo.fr",
+      "username": "said1950",
+      "role_id": "2",
+      "password": "123456",
+      "id": 4
+    },
+    {
+      "firstname": "world",
+      "lastname": "hello",
+      "email": "h.world@gmail.com",
+      "username": "hello",
+      "role_id": "3",
+      "password": "world1",
+      "id": 5
+    },
+    {
+      "firstname": "first",
+      "lastname": "test",
+      "email": "test@example",
+      "username": "test",
+      "role_id": "2",
+      "password": "testtest",
+      "id": 6
+    },
+    {
+      "firstname": "test",
+      "lastname": "second",
+      "email": "sdfd@sdfsdf.fr",
+      "username": "tetergg",
+      "role_id": "2",
+      "password": "123456",
+      "id": 7
+    },
+    {
+      "firstname": "test",
+      "lastname": "third",
+      "email": "sdfsdf@sfsf.fd",
+      "username": "gdfgg",
+      "role_id": "3",
+      "password": "123456",
+      "id": 8
+    },
+    {
+      "firstname": "cccc",
+      "lastname": "cccc",
+      "email": "cccc@ccc.cc",
+      "username": "ccccc",
+      "role_id": "2",
+      "password": "aaaaaa",
+      "id": 11
+    }
+  ],
+  "roles": [
+    {
+      "id": 1,
+      "libelle": "Administrateur"
+    },
+    {
+      "id": 2,
+      "libelle": "Professionel"
+    },
+    {
+      "id": 3,
+      "libelle": "Client"
+    }
+  ]
+}

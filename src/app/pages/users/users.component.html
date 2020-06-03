@@ -1,0 +1,62 @@
+<div class="animated fadeIn">
+  <div class="row">
+    <div class="col-sm-12 col-md-12">
+      <div class="card">
+        <div class="card-body">
+          <button type="button" class="btn btn-primary pull-right mb-1" tooltip="Ajouter un nouveau utilisateur"
+                  (click)="addUser()">
+            <i class="icon-user-follow"></i>
+          </button>
+          <table mat-table [dataSource]="usersSource" [width]="'100%'" class="mat-elevation-z3">
+
+            <!--- Note that these columns can be defined in any order.
+                  The actual rendered columns are set as a property on the row definition" -->
+
+            <!-- fullname Column -->
+            <ng-container matColumnDef="fullname">
+              <th mat-header-cell *matHeaderCellDef> Nom complet</th>
+              <td mat-cell *matCellDef="let element"> {{element.firstname + ' ' + element.lastname}} </td>
+            </ng-container>
+
+            <!-- Rôle Column -->
+            <ng-container matColumnDef="role">
+              <th mat-header-cell *matHeaderCellDef> Rôle</th>
+              <td mat-cell *matCellDef="let element"> {{usersService.getRole(element.role_id, roles).libelle}} </td>
+            </ng-container>
+
+            <!-- Email Column -->
+            <ng-container matColumnDef="email">
+              <th mat-header-cell *matHeaderCellDef> Email</th>
+              <td mat-cell *matCellDef="let element"> {{element.email}} </td>
+            </ng-container>
+
+            <!-- Username Column -->
+            <ng-container matColumnDef="username">
+              <th mat-header-cell *matHeaderCellDef> Username</th>
+              <td mat-cell *matCellDef="let element"> {{element.username}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="actions">
+              <th mat-header-cell *matHeaderCellDef> Actions</th>
+              <td mat-cell *matCellDef="let element">
+                <button type="button" class="btn btn-sm btn-outline-dark"
+                        tooltip="Modifier l'utilisateur: {{element.firstname + ' ' + element.lastname}}"
+                        (click)="editUser(element)">
+                  <i class="icon-pencil"></i>
+                </button>
+                <button type="button" class="btn btn-sm btn-outline-danger"
+                        tooltip="Supprimer l'utilisateur: {{element.firstname + ' ' + element.lastname}}"
+                        (click)="deleteUser(element)">
+                  <i class="icon-trash"></i>
+                </button>
+              </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+          </table>
+        </div>
+      </div>
+    </div><!--/.col-->
+  </div><!--/.row-->
+</div>

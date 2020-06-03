@@ -1,0 +1,119 @@
+<h1 mat-dialog-title>{{data.isnew ? 'Ajouter' : 'Modifier'}} utilisateur</h1>
+<div mat-dialog-content>
+  <form [formGroup]="userForm">
+    <div class="form-group">
+      <div class="row">
+        <div class="form-group col-sm-6">
+          <label for="lastname">Nom</label>
+          <input type="text" class="form-control" id="lastname" formControlName="lastname"
+                 placeholder="Entrez votre nom" [ngClass]="{'is-invalid': userForm.controls['lastname'].invalid}">
+
+          <div class="invalid-feedback" *ngIf="userForm.controls['lastname'].invalid">
+            <p *ngIf="userForm.controls['lastname'].hasError('required')">
+              {{frErrSrv.setErrorMessage('required')}}
+            </p>
+            <p *ngIf="userForm.controls['lastname'].hasError('minlength')">
+              {{frErrSrv.setErrorMessage('minlength', 2)}}
+            </p>
+          </div>
+
+        </div>
+        <div class="form-group col-sm-6">
+          <label for="firstname">Prénom</label>
+          <input type="text" class="form-control" id="firstname" formControlName="firstname"
+                 placeholder="Entrez votre prénom" [ngClass]="{'is-invalid': userForm.controls['firstname'].invalid}">
+
+          <div class="invalid-feedback" *ngIf="userForm.controls['firstname'].invalid">
+            <p *ngIf="userForm.controls['firstname'].hasError('required')">
+              {{frErrSrv.setErrorMessage('required')}}
+            </p>
+            <p *ngIf="userForm.controls['firstname'].hasError('minlength')">
+              {{frErrSrv.setErrorMessage('minlength', 2)}}
+            </p>
+          </div>
+
+        </div>
+      </div><!--/.row-->
+    </div>
+    <div class="form-group">
+      <label for="email">Email</label>
+      <input type="text" class="form-control" id="email" formControlName="email"
+             placeholder="Entrez votre email" [ngClass]="{'is-invalid': userForm.controls['email'].invalid}">
+
+      <div class="invalid-feedback" *ngIf="userForm.controls['email'].invalid">
+        <p *ngIf="userForm.controls['email'].hasError('required')">
+          {{frErrSrv.setErrorMessage('required')}}
+        </p>
+        <p *ngIf="userForm.controls['email'].hasError('email')">
+          {{frErrSrv.setErrorMessage('email')}}
+        </p>
+      </div>
+
+    </div>
+    <div class="form-group">
+      <label for="role">Role</label>
+      <select class="form-control" id="role" formControlName="role_id"
+              [ngClass]="{'is-invalid': userForm.controls['role_id'].invalid}">
+        <option disabled [value]="null">-- Choisissez un role</option>
+        <option *ngFor="let item of data.roles" [value]="item.id">{{item.libelle}}</option>
+      </select>
+      <div class="invalid-feedback" *ngIf="userForm.controls['role_id'].invalid">
+        <p *ngIf="userForm.controls['role_id'].hasError('required')">
+          {{frErrSrv.setErrorMessage('required')}}
+        </p>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="username">Pseudo</label>
+      <input type="text" class="form-control" id="username" formControlName="username"
+             placeholder="Entrez votre pseudo" [ngClass]="{'is-invalid': userForm.controls['username'].invalid}">
+
+      <div class="invalid-feedback" *ngIf="userForm.controls['username'].invalid">
+        <p *ngIf="userForm.controls['username'].hasError('required')">
+          {{frErrSrv.setErrorMessage('required')}}
+        </p>
+        <p *ngIf="userForm.controls['username'].hasError('minlength')">
+          {{frErrSrv.setErrorMessage('minlength', 4)}}
+        </p>
+      </div>
+
+    </div>
+    <div class="form-group">
+      <label for="password">Mot de passe</label>
+      <input type="password" class="form-control" id="password" formControlName="password"
+             placeholder="Entrez votre mot de passe" [ngClass]="{'is-invalid': userForm.controls['password'].invalid}">
+
+      <div class="invalid-feedback" *ngIf="userForm.controls['password'].invalid">
+        <p *ngIf="userForm.controls['password'].hasError('required')">
+          {{frErrSrv.setErrorMessage('required')}}
+        </p>
+        <p *ngIf="userForm.controls['password'].hasError('minlength')">
+          {{frErrSrv.setErrorMessage('minlength', 6)}}
+        </p>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="password2">Confirmer le mot de passe</label>
+      <input type="password" class="form-control" id="password2" formControlName="password2"
+             placeholder="Confirmer le mot de passe" [ngClass]="{'is-invalid': userForm.controls['password2'].invalid}">
+
+      <div class="invalid-feedback" *ngIf="userForm.controls['password2'].invalid">
+        <p *ngIf="userForm.controls['password2'].hasError('required')">
+          {{frErrSrv.setErrorMessage('required')}}
+        </p>
+        <p *ngIf="userForm.controls['password2'].hasError('minlength')">
+          {{frErrSrv.setErrorMessage('minlength', 6)}}
+        </p>
+        <p *ngIf="userForm.controls['password2'].hasError('match_password')">
+          {{frErrSrv.setErrorMessage('match_password')}}
+        </p>
+      </div>
+    </div>
+  </form>
+</div>
+<div mat-dialog-actions>
+  <div class="buttons btn-lg-group">
+    <button class="btn btn-primary" [disabled]="userForm.invalid" (click)="confirm()">{{data.isnew ? 'Ajouter' : 'Modifier'}}</button>
+    <button class="btn btn-secondary" (click)="close()">Annuler</button>
+  </div>
+</div>
