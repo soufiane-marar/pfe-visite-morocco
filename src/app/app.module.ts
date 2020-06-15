@@ -25,6 +25,9 @@ import {AlertModule, BsDatepickerModule, BsDropdownModule, DatepickerModule, Tab
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {HashLocationStrategy, LocationStrategy} from '@angular/common';
 import {NgxSpinnerModule} from 'ngx-spinner';
+import {GoogleMapsModule} from '@angular/google-maps';
+import {MapDialogComponent} from './components/map-dialog/map-dialog.component';
+import {MatDialogModule} from '@angular/material/dialog';
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true
@@ -54,7 +57,9 @@ const APP_CONTAINERS = [
     ReactiveFormsModule,
     BsDatepickerModule.forRoot(),
     DatepickerModule.forRoot(),
-    NgxSpinnerModule
+    NgxSpinnerModule,
+    GoogleMapsModule,
+    MatDialogModule
   ],
   declarations: [
     AppComponent,
@@ -62,7 +67,9 @@ const APP_CONTAINERS = [
     P404Component,
     P401Component,
     LoginComponent,
+    MapDialogComponent,
   ],
+  entryComponents: [MapDialogComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   providers: [
     {

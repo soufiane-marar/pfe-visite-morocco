@@ -1,0 +1,23 @@
+<h2 mat-dialog-title>Sélectionnez les coordonnées !</h2>
+<mat-dialog-content>
+  <google-map
+    height="500px"
+    width="100%"
+    [center]="center"
+    [zoom]="zoom"
+    (mapClick)="setPosition($event)"
+    (mapMousemove)="move($event)">
+    <map-marker #marker
+                *ngFor="let markerPosition of markerPositions"
+                [position]="markerPosition"
+                [options]="markerOptions"></map-marker>
+  </google-map>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <div class="buttons btn-lg-group">
+    <button class="btn btn-primary" [mat-dialog-close]="(markerPositions.length>0)?markerPositions[0]:undefined">
+      Confirmer
+    </button>
+    <button class="btn btn-secondary" (click)="close()">Annuler</button>
+  </div>
+</mat-dialog-actions>

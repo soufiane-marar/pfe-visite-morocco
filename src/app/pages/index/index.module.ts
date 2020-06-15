@@ -9,7 +9,7 @@ import {IndexRoutingModule} from './index.routing.module';
   imports: [
     CommonModule,
     IndexRoutingModule
-  ]
+  ],
 })
 export class IndexModule {
 }

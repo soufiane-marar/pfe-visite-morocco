@@ -1,2 +1,26 @@
 // Here you can add other styles
+.cdk-overlay-container {
+  z-index: 900 !important;
+}
+
+.bs-datepicker-container {
+  z-index: 9999 !important;
+}
+
+.logo-preview {
+  max-width: 100px !important;
+  border: solid 0.08em #eeeeee;
+  border-radius: .1em;
+}
+
+.slider-preview {
+  max-width: 250px !important;
+}
+
+.topright {
+  position: absolute;
+  top: 8px;
+  right: 25px;
+}
+
 

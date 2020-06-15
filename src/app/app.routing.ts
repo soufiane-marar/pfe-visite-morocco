@@ -51,6 +51,41 @@ export const routes: Routes = [
         // canActivate: [AuthGuard],
         loadChildren: () => import('./pages/users/users.module').then(m => m.UsersModule)
       },
+      {
+        path: 'hebergements',
+        // canActivate: [AuthGuard],
+        loadChildren: () => import('./pages/hebergements/hebergements.module').then(m => m.HebergementsModule)
+      },
+      {
+        path: 'restaurants',
+        // canActivate: [AuthGuard],
+        loadChildren: () => import('./pages/restaurants/restaurants.module').then(m => m.RestaurantsModule)
+      },
+      {
+        path: 'infos',
+        // canActivate: [AuthGuard],
+        loadChildren: () => import('./pages/infos/infos.module').then(m => m.InfosModule)
+      },
+      {
+        path: 'cultures',
+        // canActivate: [AuthGuard],
+        loadChildren: () => import('./pages/cultures/cultures.module').then(m => m.CulturesModule)
+      },
+      {
+        path: 'events',
+        // canActivate: [AuthGuard],
+        loadChildren: () => import('./pages/events/events.module').then(m => m.EvenementsModule)
+      },
+      {
+        path: 'loisir',
+        // canActivate: [AuthGuard],
+        loadChildren: () => import('./pages/loisir/loisir.module').then(m => m.LoisirModule)
+      },
+      {
+        path: 'shopping',
+        // canActivate: [AuthGuard],
+        loadChildren: () => import('./pages/shoppings/shoppings.module').then(m => m.ShoppingsModule)
+      },
     ]
   },
   {path: '**', component: P404Component}

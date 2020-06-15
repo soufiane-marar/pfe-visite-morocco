@@ -1,0 +1,75 @@
+<div class="animated fadeIn">
+  <div class="row">
+    <div class="col-sm-12 col-md-12">
+      <div class="card">
+        <div class="card-header">
+          <div class="card-header-actions">
+            <button type="button" class="btn btn-success" tooltip="Actualiser la page"
+                    (click)="initData()">
+              <i class="icon-refresh"></i>
+            </button>
+            <button type="button" class="btn btn-primary" tooltip="Ajouter un nouveau restaurant"
+                    (click)="addHebergements()">
+              <i class="icon-plus"></i>
+            </button>
+          </div>
+        </div>
+        <div class="card-body">
+          <table mat-table [dataSource]="hebergementsSource" [width]="'100%'" class="mat-elevation-z3">
+
+            <!-- fullname Column -->
+            <ng-container matColumnDef="logo">
+              <th mat-header-cell *matHeaderCellDef> Logo</th>
+              <td mat-cell *matCellDef="let element"><img [src]="element.logo" alt="{{element.reference}}" width="80"/></td>
+            </ng-container>
+
+            <!-- Rôle Column -->
+            <ng-container matColumnDef="name">
+              <th mat-header-cell *matHeaderCellDef> Name</th>
+              <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+            </ng-container>
+            <!-- Rôle Column -->
+            <ng-container matColumnDef="reference">
+              <th mat-header-cell *matHeaderCellDef> Réference</th>
+              <td mat-cell *matCellDef="let element"> {{element.reference}} </td>
+            </ng-container>
+
+            <!-- Email Column -->
+            <ng-container matColumnDef="type">
+              <th mat-header-cell *matHeaderCellDef> Type</th>
+              <td mat-cell *matCellDef="let element"> {{element.type}} </td>
+            </ng-container>
+
+            <!-- Username Column -->
+            <ng-container matColumnDef="city">
+              <th mat-header-cell *matHeaderCellDef> Ville</th>
+              <td mat-cell *matCellDef="let element"> {{endroitService.getCity(element.city_id, cities).name}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="actions">
+              <th mat-header-cell *matHeaderCellDef> Actions</th>
+              <td mat-cell *matCellDef="let element">
+                <button type="button" class="btn btn-sm btn-outline-dark"
+                        tooltip="Modifier l'hebergement: {{element.name}}"
+                        (click)="editHebergement(element)">
+                  <i class="icon-pencil"></i>
+                </button>
+                <button type="button" class="btn btn-sm btn-outline-danger"
+                        tooltip="Supprimer l'hebergement: {{element.name}}"
+                        (click)="deleteHebergement(element)">
+                  <i class="icon-trash"></i>
+                </button>
+              </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+          </table>
+          <alert *ngIf="hebergements.length == 0" type="secondary">
+            Pas de données à afficher.
+          </alert>
+        </div>
+      </div>
+    </div><!--/.col-->
+  </div><!--/.row-->
+</div>

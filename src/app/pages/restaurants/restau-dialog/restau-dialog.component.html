@@ -1,0 +1,258 @@
+<h1 mat-dialog-title>{{data.isnew ? 'Ajout' : 'Modification'}}</h1>
+<div mat-dialog-content>
+  <form [formGroup]="formGrp">
+    <div class="form-group row">
+      <div class="form-group col-sm-4">
+        <label for="reference">Réference</label>
+        <input type="text" class="form-control" id="reference" formControlName="reference"
+               placeholder="Entrez le reference">
+
+      </div>
+      <div class="form-group col-sm-8">
+        <label for="name">Désignation</label>
+        <input type="text" class="form-control" id="name" formControlName="name"
+               placeholder="Entrez la désignation" [ngClass]="{'is-invalid': formGrp.controls['name'].invalid}">
+
+        <div class="invalid-feedback" *ngIf="formGrp.controls['name'].invalid">
+          <p *ngIf="formGrp.controls['name'].hasError('required')">
+            {{frErrSrv.setErrorMessage('required')}}
+          </p>
+          <p *ngIf="formGrp.controls['name'].hasError('minlength')">
+            {{frErrSrv.setErrorMessage('minlength', 4)}}
+          </p>
+        </div>
+
+      </div>
+    </div><!--/.row-->
+    <div class="form-group row">
+      <div class="form-group col-sm-8">
+        <label for="logo">Choisissez un logo</label>
+        <input type="file" class="form-control" id="logo" accept="image/x-png,image/jpeg"
+               (change)="selectLogo($event)">
+        <input type="hidden" class="form-control" formControlName="logo">
+        <div class="invalid-feedback" *ngIf="formGrp.controls['logo'].invalid">
+          <p *ngIf="formGrp.controls['logo'].hasError('required')">
+            {{frErrSrv.setErrorMessage('required')}}
+          </p>
+        </div>
+      </div>
+      <div class="form-group col-sm-4" *ngIf="formGrp.controls['logo'].valid">
+        <img [src]="formGrp.controls['logo'].value" alt="logo" class="logo-preview">
+      </div>
+    </div><!--/.row-->
+    <div class="form-group row">
+      <div class="form-group col-sm-4">
+        <label for="email">Email</label>
+        <input type="text" class="form-control" id="email" formControlName="email"
+               placeholder="Entrez l'email" [ngClass]="{'is-invalid': formGrp.controls['email'].invalid}">
+
+        <div class="invalid-feedback" *ngIf="formGrp.controls['email'].invalid">
+          <p *ngIf="formGrp.controls['email'].hasError('email')">
+            {{frErrSrv.setErrorMessage('email')}}
+          </p>
+        </div>
+      </div>
+      <div class="form-group col-sm-3">
+        <label for="telephone">Tél</label>
+        <input type="text" class="form-control" id="telephone" formControlName="telephone"
+               placeholder="Entrez le telephone" [ngClass]="{'is-invalid': formGrp.controls['telephone'].invalid}">
+
+        <div class="invalid-feedback" *ngIf="formGrp.controls['telephone'].invalid">
+          <p *ngIf="formGrp.controls['telephone'].hasError('minlength')">
+            {{frErrSrv.setErrorMessage('minlength', 10)}}
+          </p>
+        </div>
+      </div>
+      <div class="form-group col-sm-3">
+        <label for="website">Site web</label>
+        <input type="text" class="form-control" id="website" formControlName="website"
+               placeholder="Entrez le site web" [ngClass]="{'is-invalid': formGrp.controls['website'].invalid}">
+      </div>
+      <div class="form-group col-sm-2">
+        <label for="zipcode">Zip code</label>
+        <input type="text" class="form-control" id="zipcode" formControlName="zipcode" numbers-only
+               placeholder="Entrez le zip code" [ngClass]="{'is-invalid': formGrp.controls['zipcode'].invalid}">
+      </div>
+    </div><!--/.row-->
+    <div class="form-group row">
+      <div class="form-group col-sm-6">
+        <label for="city_id">Ville</label>
+        <select class="form-control" id="city_id" formControlName="city_id"
+                [ngClass]="{'is-invalid': formGrp.controls['city_id'].invalid}">
+          <option disabled [value]="null">-- Choisissez une ville</option>
+          <option *ngFor="let item of data.cities" [value]="item.id">{{item.name}}</option>
+        </select>
+        <div class="invalid-feedback" *ngIf="formGrp.controls['city_id'].invalid">
+          <p *ngIf="formGrp.controls['city_id'].hasError('required')">
+            {{frErrSrv.setErrorMessage('required')}}
+          </p>
+        </div>
+      </div>
+      <div class="form-group col-sm-6">
+        <label for="categorie_id">Catégorie</label>
+        <select class="form-control" id="categorie_id" formControlName="categorie_id"
+                [ngClass]="{'is-invalid': formGrp.controls['categorie_id'].invalid}">
+          <option disabled [value]="null">-- Choisissez une catégorie</option>
+          <option *ngFor="let item of data.categories" [value]="item.id">{{item.name}}</option>
+        </select>
+        <div class="invalid-feedback" *ngIf="formGrp.controls['categorie_id'].invalid">
+          <p *ngIf="formGrp.controls['categorie_id'].hasError('required')">
+            {{frErrSrv.setErrorMessage('required')}}
+          </p>
+        </div>
+      </div>
+    </div><!--/.row-->
+    <div class="form-group row">
+      <div class="col-sm-2">
+        <button type="button" class="btn btn-dark btn-pill mt-4 pull-right"
+                tooltip="Sélectionner les coordonnées dans la map" (click)="openMapDialog()">
+          <i class="fa fa-map-marker fa-2x"></i>
+        </button>
+      </div>
+      <div class="form-group col-sm-5">
+        <label for="longitude">Longitude</label>
+        <input type="text" class="form-control" id="longitude" formControlName="longitude" numbers-only [decimals]="15"
+               [ngClass]="{'is-invalid': formGrp.controls['longitude'].invalid}">
+
+        <div class="invalid-feedback"
+             *ngIf="formGrp.controls['longitude'].invalid">
+          <p
+            *ngIf="formGrp.controls['longitude'].hasError('required')">
+            Longitude est obligatoire !
+          </p>
+          <p
+            *ngIf="formGrp.controls['longitude'].hasError('invalid_val')">
+            Longitude est invalide !
+          </p>
+        </div>
+      </div>
+      <div class="form-group col-sm-5">
+        <label for="latitude">Latitude</label>
+        <input type="text" class="form-control" id="latitude" formControlName="latitude" numbers-only [decimals]="15"
+               [ngClass]="{'is-invalid': formGrp.controls['latitude'].invalid}">
+        <div class="invalid-feedback"
+             *ngIf="formGrp.controls['latitude'].invalid">
+          <p
+            *ngIf="formGrp.controls['latitude'].hasError('required')">
+            latitude est obligatoire !
+          </p>
+          <p
+            *ngIf="formGrp.controls['latitude'].hasError('invalid_val')">
+            Latitude est invalide !
+          </p>
+        </div>
+      </div>
+    </div><!--/.row-->
+
+    <div class="form-group row">
+      <div class="form-group col-sm-4">
+        <label for="adresse1">Adresse 1</label>
+        <input type="text" class="form-control" id="adresse1" formControlName="adresse1"
+               [ngClass]="{'is-invalid': formGrp.controls['adresse1'].invalid}">
+
+        <div class="invalid-feedback"
+             *ngIf="formGrp.controls['adresse1'].invalid">
+          <p
+            *ngIf="formGrp.controls['adresse1'].hasError('required')">
+            {{frErrSrv.setErrorMessage('required')}}
+          </p>
+        </div>
+      </div>
+      <div class="form-group col-sm-4">
+        <label for="adresse2">Adresse 2</label>
+        <input type="text" class="form-control" id="adresse2" formControlName="adresse2"
+               [ngClass]="{'is-invalid': formGrp.controls['adresse2'].invalid}">
+
+        <div class="invalid-feedback"
+             *ngIf="formGrp.controls['adresse2'].invalid">
+          <p
+            *ngIf="formGrp.controls['adresse2'].hasError('required')">
+            {{frErrSrv.setErrorMessage('required')}}
+          </p>
+        </div>
+      </div>
+      <div class="form-group col-sm-4">
+        <label for="description">Description</label>
+        <textarea class="form-control" formControlName="description" id="description"
+                  [ngClass]="{'is-invalid': formGrp.controls['description'].invalid}"></textarea>
+        <div class="invalid-feedback"
+             *ngIf="formGrp.controls['description'].invalid">
+          <p
+            *ngIf="formGrp.controls['description'].hasError('minlength')">
+            {{frErrSrv.setErrorMessage('minlength', 15)}}
+          </p>
+        </div>
+      </div>
+    </div><!--/.row-->
+    <div class="form-group row">
+      <div class="form-group col-sm-6">
+        <label for="specialite">Spécialité</label>
+        <mat-select formControlName="specialite" id="specialite" multiple>
+          <mat-option disabled [value]="null">-- Choisissez une spécialité</mat-option>
+          <mat-option value="marocaine">Marocaine</mat-option>
+          <mat-option value="francaise">Francaise</mat-option>
+          <mat-option value="italienne">Italienne</mat-option>
+          <mat-option value="asiatique">Asiatique</mat-option>
+          <mat-option value="américaine">Américaine</mat-option>
+        </mat-select>
+        <div class="invalid-feedback" *ngIf="formGrp.controls['specialite'].invalid">
+          <p *ngIf="formGrp.controls['specialite'].hasError('required')">
+            {{frErrSrv.setErrorMessage('required')}}
+          </p>
+        </div>
+      </div>
+      <div class="form-group col-sm-3">
+        <label for="prixCarte">Prix carte</label>
+        <input type="text" class="form-control" id="prixCarte" formControlName="prixCarte" numbers-only
+               placeholder="Entrez le Prix carte" [ngClass]="{'is-invalid': formGrp.controls['prixCarte'].invalid}">
+        <div class="invalid-feedback" *ngIf="formGrp.controls['prixCarte'].invalid">
+          <p *ngIf="formGrp.controls['prixCarte'].hasError('required')">
+            {{frErrSrv.setErrorMessage('required')}}
+          </p>
+        </div>
+      </div>
+      <div class="form-group col-sm-3">
+        <label for="prixMoyenne">Prix moyenne</label>
+        <input type="text" class="form-control" id="prixMoyenne" formControlName="prixMoyenne" numbers-only
+               placeholder="Entrez le Prix moyenne" [ngClass]="{'is-invalid': formGrp.controls['prixMoyenne'].invalid}">
+        <div class="invalid-feedback" *ngIf="formGrp.controls['prixMoyenne'].invalid">
+          <p *ngIf="formGrp.controls['prixMoyenne'].hasError('required')">
+            {{frErrSrv.setErrorMessage('required')}}
+          </p>
+        </div>
+      </div>
+    </div><!--/.row-->
+    <div class="form-group row">
+      <div class="form-group col-sm-3">
+        <label for="files">Choisissez un ou plusieurs fichiers</label>
+        <input type="file" class="form-control" id="files" multiple accept="image/x-png,image/jpeg"
+               (change)="fileChange($event)">
+        <input type="hidden" class="form-control" formControlName="media">
+        <div class="invalid-feedback" *ngIf="formGrp.controls['media'].invalid">
+          <p *ngIf="formGrp.controls['media'].hasError('required')">
+            {{frErrSrv.setErrorMessage('required')}}
+          </p>
+        </div>
+      </div>
+      <div class="form-group col-sm-9" *ngIf="media.length>0">
+        <div class="row">
+          <div class="col-md-3" *ngFor="let item of media; let index=index">
+            <img [src]="item.path" alt="item {{index}}" style="display: block; width: 100%;" class="slider-preview"
+                 width="200">
+            <button class="btn btn-sm btn-pill btn-outline-warning topright"
+                    (click)="media.splice(index,1)">
+              x
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>
+<div mat-dialog-actions align="end">
+  <div class="buttons btn-lg-group">
+    <button class="btn btn-primary" [disabled]="formGrp.invalid"
+            (click)="confirm()">{{data.isnew ? 'Ajouter' : 'Modifier'}}</button>
+    <button class="btn btn-secondary" (click)="close()">Annuler</button>
+  </div>
+</div>

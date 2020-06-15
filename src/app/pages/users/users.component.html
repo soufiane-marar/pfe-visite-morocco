@@ -7,6 +7,10 @@
                   (click)="addUser()">
             <i class="icon-user-follow"></i>
           </button>
+          <button type="button" class="btn btn-success pull-right mb-1 mr-2" tooltip="Actualiser la page"
+                  (click)="initData()">
+            <i class="icon-reload"></i>
+          </button>
           <table mat-table [dataSource]="usersSource" [width]="'100%'" class="mat-elevation-z3">
 
             <!--- Note that these columns can be defined in any order.

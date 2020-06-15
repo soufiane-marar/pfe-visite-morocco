@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {UsersService} from '../../services/users.service';
 import {forkJoin, Subject} from 'rxjs';
 import {take, takeUntil} from 'rxjs/operators';
@@ -15,7 +15,7 @@ import {NgxSpinnerService} from 'ngx-spinner';
   templateUrl: './users.component.html',
   styleUrls: ['./users.component.css']
 })
-export class UsersComponent implements OnInit {
+export class UsersComponent implements OnInit, OnDestroy {
 
 
   private subject = new Subject<void>();
@@ -35,6 +35,11 @@ export class UsersComponent implements OnInit {
 
   ngOnInit(): void {
 
+    this.initData();
+
+  }
+
+  public initData(): void {
     this.ngxSpinner.show();
     forkJoin([this.usersService.getUsers(), this.usersService.getRoles()])
       .pipe(takeUntil(this.subject))
@@ -56,7 +61,6 @@ export class UsersComponent implements OnInit {
           });
         }
       );
-
   }
 
   private openDialog(isnew: boolean, user: User = null): void {
@@ -130,5 +134,10 @@ export class UsersComponent implements OnInit {
             );
         }
       });
+  }
+
+  ngOnDestroy(): void {
+    this.subject.next();
+    this.subject.complete();
   }
 }
