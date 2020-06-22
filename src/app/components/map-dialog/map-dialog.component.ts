@@ -8,8 +8,9 @@ import {MatDialogRef} from '@angular/material/dialog';
 })
 export class MapDialogComponent implements OnInit {
 
+  mapOptions: google.maps.MapOptions = {fullscreenControl:false};
   center = {lat: 30, lng: -10};
-  markerOptions = {draggable: true};
+  markerOptions: google.maps.MarkerOptions = {draggable: true};
   markerPositions: google.maps.LatLngLiteral[] = [];
   zoom = 6;
   display?: google.maps.LatLngLiteral;

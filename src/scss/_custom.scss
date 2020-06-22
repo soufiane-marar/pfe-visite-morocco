@@ -1,10 +1,18 @@
 // Here you can add other styles
-.cdk-overlay-container {
-  z-index: 900 !important;
+bs-datepicker-container, bs-daterangepicker-container {
+  z-index: 9999 !important;
 }
 
-.bs-datepicker-container {
+.bs-datepicker-container, .bs-daterangepicker-container {
   z-index: 9999 !important;
+}
+
+.cdk-overlay-container {
+  z-index: 9998 !important;
+}
+
+.callout-purple {
+  border-left-color: #8056cd;
 }
 
 .logo-preview {
@@ -15,6 +23,7 @@
 
 .slider-preview {
   max-width: 250px !important;
+  border: 1px solid #b5916a;
 }
 
 .topright {

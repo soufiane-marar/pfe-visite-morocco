@@ -4,9 +4,10 @@
   [navbarBrandFull]="{src: 'assets/img/brand/logo.svg', width: 89, height: 25, alt: 'CoreUI Logo'}"
   [navbarBrandMinimized]="{src: 'assets/img/brand/sygnet.svg', width: 30, height: 30, alt: 'CoreUI Logo'}"
   [sidebarToggler]="'lg'"
-  [asideMenuToggler]="false">
+  [asideMenuToggler]="false"
+  [mobileAsideMenuToggler]="false">
   <ul class="nav navbar-nav d-md-down-none">
-    <li class="nav-item px-3">
+    <!--<li class="nav-item px-3">
       <a class="nav-link" href="#">Dashboard</a>
     </li>
     <li class="nav-item px-3">
@@ -14,7 +15,7 @@
     </li>
     <li class="nav-item px-3">
       <a class="nav-link" href="#">Settings</a>
-    </li>
+    </li>-->
   </ul>
   <ul class="nav navbar-nav ml-auto">
     <li class="nav-item d-md-down-none">
@@ -34,7 +35,6 @@
       <div class="dropdown-menu dropdown-menu-right" *dropdownMenu aria-labelledby="simple-dropdown">
         <div class="dropdown-header text-center"><strong>Soufiane Marar</strong><br/><small>Administrateur</small></div>
         <div class="divider"></div>
-        <a class="dropdown-item" href="#"><i class="fa fa-user"></i> Profile</a>
         <a class="dropdown-item" href="#"><i class="fa fa-cog"></i> Sécurité</a>
         <div class="divider"></div>
         <a class="dropdown-item" href="#"><i class="fa fa-sign-out"></i> Déconnexion</a>
@@ -43,7 +43,8 @@
   </ul>
 </app-header>
 <div class="app-body">
-  <app-sidebar #appSidebar [fixed]="true" [display]="'lg'" [minimized]="sidebarMinimized" (minimizedChange)="toggleMinimize($event)">
+  <app-sidebar #appSidebar [fixed]="true" [display]="'lg'" [minimized]="sidebarMinimized"
+               (minimizedChange)="toggleMinimize($event)">
     <app-sidebar-nav [navItems]="navItems" [perfectScrollbar] [disabled]="appSidebar.minimized"></app-sidebar-nav>
     <app-sidebar-minimizer></app-sidebar-minimizer>
   </app-sidebar>
@@ -62,17 +63,17 @@
       </li>-->
     </cui-breadcrumb>
     <!-- deprecation warning for 'app-breadcrumb' -->
-    <!--<ol class="breadcrumb">-->
-      <!--<app-breadcrumb></app-breadcrumb>-->
-      <!--&lt;!&ndash; Breadcrumb Menu&ndash;&gt;-->
-      <!--<li class="breadcrumb-menu d-md-down-none">-->
-        <!--<div class="btn-group" role="group" aria-label="Button group with nested dropdown">-->
-          <!--<a class="btn" href="#"><i class="icon-speech"></i></a>-->
-          <!--<a class="btn" [routerLink]="['/dashboard']"><i class="icon-graph"></i> &nbsp;Dashboard</a>-->
-          <!--<a class="btn" href="#"><i class="icon-settings"></i> &nbsp;Settings</a>-->
-        <!--</div>-->
-      <!--</li>-->
-    <!--</ol>-->
+    <!--<ol class="breadcrumb">
+    <app-breadcrumb></app-breadcrumb>
+    &lt;!&ndash; Breadcrumb Menu&ndash;&gt;
+    <li class="breadcrumb-menu d-md-down-none">
+    <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
+    <a class="btn" href="#"><i class="icon-speech"></i></a>
+    <a class="btn" [routerLink]="['/dashboard']"><i class="icon-graph"></i> &nbsp;Dashboard</a>
+    <a class="btn" href="#"><i class="icon-settings"></i> &nbsp;Settings</a>
+    </div>
+    </li>
+    </ol>-->
     <div class="container-fluid">
       <router-outlet></router-outlet>
     </div><!-- /.container-fluid -->

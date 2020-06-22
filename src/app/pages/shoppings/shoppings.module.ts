@@ -6,7 +6,7 @@ import {ShoppingsComponent} from './shoppings.component';
 import {ShoppingsDialogComponent} from './shoppings-dialog/shoppings-dialog.component';
 import {ShoppingsService} from '../../services/shoppings.service';
 import {MatTableModule} from '@angular/material/table';
-import {AlertModule, TooltipModule} from 'ngx-bootstrap';
+import {AlertModule, TimepickerModule, TooltipModule} from 'ngx-bootstrap';
 import {AvatarModule} from 'ngx-avatar';
 import {EndroitService} from '../../services/endroit.service';
 import {MatDialogModule} from '@angular/material/dialog';
@@ -26,7 +26,8 @@ import {NumbersOnlyModule} from '../../directives/numbers-only/numbers-only.modu
     AlertModule.forRoot(),
     MatDialogModule,
     ReactiveFormsModule,
-    NumbersOnlyModule
+    NumbersOnlyModule,
+    TimepickerModule.forRoot()
   ],
   providers: [ShoppingsService, EndroitService]
 })

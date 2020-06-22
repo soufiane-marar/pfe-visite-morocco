@@ -36,4 +36,26 @@ export class CustomValidators {
 
     return null;
   }
+
+  static CheckRanking(control: AbstractControl): { [key: string]: any } | null {
+    let ranking: number = control.get('ranking').value;
+
+    if (ranking <= 0 || ranking > 5) {
+      control.get('ranking').setErrors({rank: ranking + ' est une valeur invalid pour ranking !'});
+      return {rank: ranking + ' est une valeur invalid pour ranking !'};
+    }
+
+    return null;
+  }
+
+  static CheckRooms(control: AbstractControl): { [key: string]: any } | null {
+    let rooms: number = control.get('rooms').value;
+
+    if (rooms <= 0) {
+      control.get('rooms').setErrors({rooms: 'Le nombre de chambres doit être supérieur à zéro'});
+      return {rooms: 'Le nombre de chambres doit être supérieur à zéro'};
+    }
+
+    return null;
+  }
 }

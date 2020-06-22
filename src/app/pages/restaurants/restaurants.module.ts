@@ -7,7 +7,7 @@ import {RestauDialogComponent} from './restau-dialog/restau-dialog.component';
 import {EndroitService} from '../../services/endroit.service';
 import {RestaurantService} from '../../services/restaurant.service';
 import {MatTableModule} from '@angular/material/table';
-import {AlertModule, CarouselModule, TooltipModule} from 'ngx-bootstrap';
+import {AlertModule, TimepickerModule, TooltipModule} from 'ngx-bootstrap';
 import {MatDialogModule} from '@angular/material/dialog';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {NumbersOnlyModule} from '../../directives/numbers-only/numbers-only.module';
@@ -28,6 +28,7 @@ import {MatSelectModule} from '@angular/material/select';
     NumbersOnlyModule,
     AlertModule.forRoot(),
     MatSelectModule,
+    TimepickerModule.forRoot()
   ],
   providers: [EndroitService, RestaurantService]
 })

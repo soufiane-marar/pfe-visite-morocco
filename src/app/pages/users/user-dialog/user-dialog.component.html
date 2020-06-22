@@ -6,9 +6,11 @@
         <div class="form-group col-sm-6">
           <label for="lastname">Nom</label>
           <input type="text" class="form-control" id="lastname" formControlName="lastname"
-                 placeholder="Entrez votre nom" [ngClass]="{'is-invalid': userForm.controls['lastname'].invalid}">
+                 placeholder="Entrez votre nom"
+                 [ngClass]="{'is-invalid': userForm.controls['lastname'].invalid && userForm.controls['lastname'].touched}">
 
-          <div class="invalid-feedback" *ngIf="userForm.controls['lastname'].invalid">
+          <div class="invalid-feedback"
+               *ngIf="userForm.controls['lastname'].invalid && userForm.controls['lastname'].touched">
             <p *ngIf="userForm.controls['lastname'].hasError('required')">
               {{frErrSrv.setErrorMessage('required')}}
             </p>
@@ -21,9 +23,11 @@
         <div class="form-group col-sm-6">
           <label for="firstname">Prénom</label>
           <input type="text" class="form-control" id="firstname" formControlName="firstname"
-                 placeholder="Entrez votre prénom" [ngClass]="{'is-invalid': userForm.controls['firstname'].invalid}">
+                 placeholder="Entrez votre prénom"
+                 [ngClass]="{'is-invalid': userForm.controls['firstname'].invalid && userForm.controls['firstname'].touched}">
 
-          <div class="invalid-feedback" *ngIf="userForm.controls['firstname'].invalid">
+          <div class="invalid-feedback"
+               *ngIf="userForm.controls['firstname'].invalid && userForm.controls['firstname'].touched">
             <p *ngIf="userForm.controls['firstname'].hasError('required')">
               {{frErrSrv.setErrorMessage('required')}}
             </p>
@@ -38,9 +42,10 @@
     <div class="form-group">
       <label for="email">Email</label>
       <input type="text" class="form-control" id="email" formControlName="email"
-             placeholder="Entrez votre email" [ngClass]="{'is-invalid': userForm.controls['email'].invalid}">
+             placeholder="Entrez votre email"
+             [ngClass]="{'is-invalid': userForm.controls['email'].invalid && userForm.controls['email'].touched}">
 
-      <div class="invalid-feedback" *ngIf="userForm.controls['email'].invalid">
+      <div class="invalid-feedback" *ngIf="userForm.controls['email'].invalid && userForm.controls['email'].touched">
         <p *ngIf="userForm.controls['email'].hasError('required')">
           {{frErrSrv.setErrorMessage('required')}}
         </p>
@@ -53,11 +58,12 @@
     <div class="form-group">
       <label for="role">Role</label>
       <select class="form-control" id="role" formControlName="role_id"
-              [ngClass]="{'is-invalid': userForm.controls['role_id'].invalid}">
+              [ngClass]="{'is-invalid': userForm.controls['role_id'].invalid && userForm.controls['role_id'].touched}">
         <option disabled [value]="null">-- Choisissez un role</option>
         <option *ngFor="let item of data.roles" [value]="item.id">{{item.libelle}}</option>
       </select>
-      <div class="invalid-feedback" *ngIf="userForm.controls['role_id'].invalid">
+      <div class="invalid-feedback"
+           *ngIf="userForm.controls['role_id'].invalid && userForm.controls['role_id'].touched">
         <p *ngIf="userForm.controls['role_id'].hasError('required')">
           {{frErrSrv.setErrorMessage('required')}}
         </p>
@@ -66,9 +72,11 @@
     <div class="form-group">
       <label for="username">Pseudo</label>
       <input type="text" class="form-control" id="username" formControlName="username"
-             placeholder="Entrez votre pseudo" [ngClass]="{'is-invalid': userForm.controls['username'].invalid}">
+             placeholder="Entrez votre pseudo"
+             [ngClass]="{'is-invalid': userForm.controls['username'].invalid && userForm.controls['username'].touched}">
 
-      <div class="invalid-feedback" *ngIf="userForm.controls['username'].invalid">
+      <div class="invalid-feedback"
+           *ngIf="userForm.controls['username'].invalid && userForm.controls['username'].touched">
         <p *ngIf="userForm.controls['username'].hasError('required')">
           {{frErrSrv.setErrorMessage('required')}}
         </p>
@@ -81,9 +89,11 @@
     <div class="form-group">
       <label for="password">Mot de passe</label>
       <input type="password" class="form-control" id="password" formControlName="password"
-             placeholder="Entrez votre mot de passe" [ngClass]="{'is-invalid': userForm.controls['password'].invalid}">
+             placeholder="Entrez votre mot de passe"
+             [ngClass]="{'is-invalid': userForm.controls['password'].invalid && userForm.controls['password'].touched}">
 
-      <div class="invalid-feedback" *ngIf="userForm.controls['password'].invalid">
+      <div class="invalid-feedback"
+           *ngIf="userForm.controls['password'].invalid && userForm.controls['password'].touched">
         <p *ngIf="userForm.controls['password'].hasError('required')">
           {{frErrSrv.setErrorMessage('required')}}
         </p>
@@ -95,9 +105,11 @@
     <div class="form-group">
       <label for="password2">Confirmer le mot de passe</label>
       <input type="password" class="form-control" id="password2" formControlName="password2"
-             placeholder="Confirmer le mot de passe" [ngClass]="{'is-invalid': userForm.controls['password2'].invalid}">
+             placeholder="Confirmer le mot de passe"
+             [ngClass]="{'is-invalid': userForm.controls['password2'].invalid && userForm.controls['password2'].touched}">
 
-      <div class="invalid-feedback" *ngIf="userForm.controls['password2'].invalid">
+      <div class="invalid-feedback"
+           *ngIf="userForm.controls['password2'].invalid && userForm.controls['password2'].touched">
         <p *ngIf="userForm.controls['password2'].hasError('required')">
           {{frErrSrv.setErrorMessage('required')}}
         </p>
@@ -113,7 +125,8 @@
 </div>
 <div mat-dialog-actions>
   <div class="buttons btn-lg-group">
-    <button class="btn btn-primary" [disabled]="userForm.invalid" (click)="confirm()">{{data.isnew ? 'Ajouter' : 'Modifier'}}</button>
+    <button class="btn btn-primary" [disabled]="userForm.invalid"
+            (click)="confirm()">{{data.isnew ? 'Ajouter' : 'Modifier'}}</button>
     <button class="btn btn-secondary" (click)="close()">Annuler</button>
   </div>
 </div>

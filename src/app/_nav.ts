@@ -3,16 +3,13 @@ import {INavData} from '@coreui/angular';
 export const navItems: INavData[] = [
 
   {
-    name: 'Home',
-    icon: 'icon-home',
+    name: 'Dashboard',
+    icon: 'fa fa-desktop',
     url: '/home',
   },
   {
-    divider: true,
-  },
-  {
     title: true,
-    name: 'Paramètrage endroits',
+    name: 'Endroits',
   },
   {
     name: 'Hebergements',
@@ -50,11 +47,8 @@ export const navItems: INavData[] = [
     icon: 'fa fa-shopping-cart'
   },
   {
-    divider: true,
-  },
-  {
     title: true,
-    name: 'Paramètrage general',
+    name: 'Paramètrage',
   },
   {
     name: 'Utilisateurs',
@@ -62,8 +56,8 @@ export const navItems: INavData[] = [
     icon: 'fa fa-users'
   },
   {
-    name: 'Catégories endroits',
+    name: 'Catégories',
     url: '/categories',
-    icon: 'icon-star'
+    icon: 'fa fa-cubes'
   },
 ];

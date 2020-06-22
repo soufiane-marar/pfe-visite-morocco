@@ -86,6 +86,16 @@ export const routes: Routes = [
         // canActivate: [AuthGuard],
         loadChildren: () => import('./pages/shoppings/shoppings.module').then(m => m.ShoppingsModule)
       },
+      {
+        path: 'cities',
+        // canActivate: [AuthGuard],
+        loadChildren: () => import('./pages/cities/cities.module').then(m => m.CitiesModule)
+      },
+      {
+        path: 'categories',
+        // canActivate: [AuthGuard],
+        loadChildren: () => import('./pages/categories/categories.module').then(m => m.CategoriesModule)
+      },
     ]
   },
   {path: '**', component: P404Component}

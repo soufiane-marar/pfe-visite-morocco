@@ -7,7 +7,7 @@ import {CulturesDialogComponent} from './cultures-dialog/cultures-dialog.compone
 import {CulturesService} from '../../services/cultures.service';
 import {MatTableModule} from '@angular/material/table';
 import {AvatarModule} from 'ngx-avatar';
-import {AlertModule, TooltipModule} from 'ngx-bootstrap';
+import {AlertModule, TimepickerModule, TooltipModule} from 'ngx-bootstrap';
 import {EndroitService} from '../../services/endroit.service';
 import {MatDialogModule} from '@angular/material/dialog';
 import {ReactiveFormsModule} from '@angular/forms';
@@ -26,9 +26,10 @@ import {NumbersOnlyModule} from '../../directives/numbers-only/numbers-only.modu
     AlertModule.forRoot(),
     MatDialogModule,
     ReactiveFormsModule,
-    NumbersOnlyModule
+    NumbersOnlyModule,
+    TimepickerModule.forRoot()
   ],
-  providers: [CulturesService,EndroitService]
+  providers: [CulturesService, EndroitService]
 })
 export class CulturesModule {
 }

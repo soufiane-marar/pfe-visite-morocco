@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { RestauDialogComponent } from './restau-dialog.component';
+import { CitiesDialogComponent } from './cities-dialog.component';
 
-describe('RestauDialogComponent', () => {
-  let component: RestauDialogComponent;
-  let fixture: ComponentFixture<RestauDialogComponent>;
+describe('CitiesDialogComponent', () => {
+  let component: CitiesDialogComponent;
+  let fixture: ComponentFixture<CitiesDialogComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ RestauDialogComponent ]
+      declarations: [ CitiesDialogComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(RestauDialogComponent);
+    fixture = TestBed.createComponent(CitiesDialogComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

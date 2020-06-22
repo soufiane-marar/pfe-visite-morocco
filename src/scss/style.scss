@@ -32,7 +32,7 @@ $ng-theme: mat-light-theme($ng-primary, $ng-accent, $ng-warn);
 @import "~@coreui/coreui/scss/coreui";
 
 // sweet alert theme
-@import '~@sweetalert2/theme-bootstrap-4/bootstrap-4';
+@import '~@sweetalert2/theme-bootstrap-4/bootstrap-4.css';
 
 // If you want to add something do it here
 @import "custom";

@@ -5,6 +5,7 @@
     width="100%"
     [center]="center"
     [zoom]="zoom"
+    [options]="mapOptions"
     (mapClick)="setPosition($event)"
     (mapMousemove)="move($event)">
     <map-marker #marker

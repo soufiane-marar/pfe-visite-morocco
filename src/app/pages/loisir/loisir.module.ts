@@ -5,7 +5,7 @@ import {LoisirRoutingModule} from './loisir-routing.module';
 import {LoisirComponent} from './loisir.component';
 import {LoisirDialogComponent} from './loisir-dialog/loisir-dialog.component';
 import {LoisirService} from '../../services/loisir.service';
-import {AlertModule, TooltipModule} from 'ngx-bootstrap';
+import {AlertModule, TimepickerModule, TooltipModule} from 'ngx-bootstrap';
 import {MatTableModule} from '@angular/material/table';
 import {AvatarModule} from 'ngx-avatar';
 import {EndroitService} from '../../services/endroit.service';
@@ -26,7 +26,8 @@ import {NumbersOnlyModule} from '../../directives/numbers-only/numbers-only.modu
     AvatarModule,
     MatDialogModule,
     ReactiveFormsModule,
-    NumbersOnlyModule
+    NumbersOnlyModule,
+    TimepickerModule.forRoot()
   ],
   providers: [LoisirService, EndroitService]
 })

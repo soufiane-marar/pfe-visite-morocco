@@ -3,7 +3,12 @@ import {RouterModule, Routes} from '@angular/router';
 import {InfosComponent} from './infos.component';
 
 
-const routes: Routes = [{path: '', component: InfosComponent}];
+const routes: Routes = [{
+  path: '', component: InfosComponent,
+  data: {
+    title: 'Infos'
+  }
+}];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],

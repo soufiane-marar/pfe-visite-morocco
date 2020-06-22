@@ -8,9 +8,9 @@
               <div class="card-body text-center">
                 <div>
                   <h2>Visit Morocco</h2>
-                  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut
-                    labore et dolore magna aliqua.</p>
-
+                  <!--<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut
+                    labore et dolore magna aliqua.</p>-->
+                  <p>LOGO ICI !</p>
                 </div>
               </div>
             </div>
@@ -27,9 +27,10 @@
                       <span class="input-group-text"><i class="icon-user"></i></span>
                     </div>
                     <input type="text" class="form-control" formControlName="username" placeholder="Username" required
-                           [ngClass]="{'is-invalid': loginForm.controls['username'].invalid}">
+                           [ngClass]="{'is-invalid': loginForm.controls['username'].invalid && loginForm.controls['username'].touched}">
 
-                    <div class="invalid-feedback" *ngIf="loginForm.controls['username'].invalid">
+                    <div class="invalid-feedback"
+                         *ngIf="loginForm.controls['username'].invalid && loginForm.controls['username'].touched">
                       <p *ngIf="loginForm.controls['username'].hasError('required')">
                         {{frErrSrv.setErrorMessage('required')}}
                       </p>
@@ -43,9 +44,11 @@
                       <span class="input-group-text"><i class="icon-lock"></i></span>
                     </div>
                     <input type="password" class="form-control" placeholder="Mot de passe" formControlName="password"
-                           required [ngClass]="{'is-invalid': loginForm.controls['password'].invalid}">
+                           required
+                           [ngClass]="{'is-invalid': loginForm.controls['password'].invalid && loginForm.controls['password'].touched}">
 
-                    <div class="invalid-feedback" *ngIf="loginForm.controls['password'].invalid">
+                    <div class="invalid-feedback"
+                         *ngIf="loginForm.controls['password'].invalid && loginForm.controls['password'].touched">
                       <p *ngIf="loginForm.controls['password'].hasError('required')">
                         {{frErrSrv.setErrorMessage('required')}}
                       </p>

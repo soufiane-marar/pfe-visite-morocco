@@ -1,1 +1,206 @@
-<p>index works!</p>
+<div class="animated fadeIn">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card">
+        <div class="card-body">
+          <div class="row">
+            <div class="col-sm-12">
+              <div class="row">
+                <div class="col-md-6">
+                  <label for="city">Ville</label>
+                  <select class="form-control" id="city" [(ngModel)]="city_id" (ngModelChange)="getMapData()">
+                    <option [value]="null" [disabled]="true">Sélectionner une ville</option>
+                    <option *ngFor="let item of cities" [value]="item.id">{{item.name}}</option>
+                  </select>
+                </div>
+                <div class="col-md-2">
+                  <button class="btn btn-primary mt-4" [disabled]="city_id==null" (click)="getMapData()">
+                    <i class="icon-reload"></i>
+                    Afficher
+                  </button>
+                </div>
+              </div>
+              <hr/>
+              <div class="row">
+                <div class="col">
+                  <div class="callout callout-info">
+                    <small class="text-muted">Hébergements</small>
+                    <br>
+                    <strong class="h4">{{hebergements.length}}</strong>
+                  </div>
+                </div><!--/.col-->
+                <div class="col">
+                  <div class="callout callout-danger">
+                    <small class="text-muted">Restaurants</small>
+                    <br>
+                    <strong class="h4">{{restaurants.length}}</strong>
+                  </div>
+                </div><!--/.col-->
+                <div class="col">
+                  <div class="callout callout-warning">
+                    <small class="text-muted">Loisirs</small>
+                    <br>
+                    <strong class="h4">{{loisirs.length}}</strong>
+                  </div>
+                </div><!--/.col-->
+                <div class="col">
+                  <div class="callout callout-success">
+                    <small class="text-muted">Cultures</small>
+                    <br>
+                    <strong class="h4">{{cultures.length}}</strong>
+                  </div>
+                </div><!--/.col-->
+                <div class="col">
+                  <div class="callout callout-dark">
+                    <small class="text-muted">Shoppings</small>
+                    <br>
+                    <strong class="h4">{{shoppings.length}}</strong>
+                  </div>
+                </div><!--/.col-->
+                <div class="col">
+                  <div class="callout callout-secondary">
+                    <small class="text-muted">Evénements</small>
+                    <br>
+                    <strong class="h4">{{events.length}}</strong>
+                  </div>
+                </div><!--/.col-->
+                <div class="col">
+                  <div class="callout callout-purple">
+                    <small class="text-muted">Infos</small>
+                    <br>
+                    <strong class="h4">{{infos.length}}</strong>
+                  </div>
+                </div><!--/.col-->
+              </div><!--/.row-->
+              <hr class="mt-0">
+              <div *ngIf="city_id!=null" class="row">
+                <div class="col-md-12">
+                  <google-map
+                    #mainMap
+                    height="700px"
+                    width="100%"
+                    [center]="center"
+                    [zoom]="zoom"
+                    [options]="mapOptions"
+                    (zoomChanged)="getZoom(mainMap)">
+                    <map-marker #markerHebergements
+
+                                *ngFor="let item of hebergements"
+                                [position]="{lat: item.latitude, lng: item.longitude}"
+                                [options]="getMarkerOption('assets/img/icons/hebergements_m.png',checkGroup.hebergements)"
+                                (mapClick)="openInfoWindow(markerHebergements, item)">
+                    </map-marker>
+                    <map-marker #markerRestaurants
+                                *ngFor="let item of restaurants"
+                                [position]="{lat: item.latitude, lng: item.longitude}"
+                                [options]="getMarkerOption('assets/img/icons/restaurants_m.png',checkGroup.restaurants)"
+                                (mapClick)="openInfoWindow(markerRestaurants, item)">
+                    </map-marker>
+                    <map-marker #markerInfos
+                                *ngFor="let item of infos"
+                                [position]="{lat: item.latitude, lng: item.longitude}"
+                                [options]="getMarkerOption('assets/img/icons/infos_m.png',checkGroup.infos)"
+                                (mapClick)="openInfoWindow(markerInfos, item)">
+                    </map-marker>
+                    <map-marker #markerEvents
+                                *ngFor="let item of events"
+                                [position]="{lat: item.latitude, lng: item.longitude}"
+                                [options]="getMarkerOption('assets/img/icons/events_m.png',checkGroup.events)"
+                                (mapClick)="openInfoWindow(markerEvents, item)">
+                    </map-marker>
+                    <map-marker #markerLoisirs
+                                *ngFor="let item of loisirs"
+                                [position]="{lat: item.latitude, lng: item.longitude}"
+                                [options]="getMarkerOption('assets/img/icons/loisirs_m.png',checkGroup.loisirs)"
+                                (mapClick)="openInfoWindow(markerLoisirs, item)">
+                    </map-marker>
+                    <map-marker #markerCultures
+                                *ngFor="let item of cultures"
+                                [position]="{lat: item.latitude, lng: item.longitude}"
+                                [options]="getMarkerOption('assets/img/icons/culture_m.png',checkGroup.cultures)"
+                                (mapClick)="openInfoWindow(markerCultures, item)">
+                    </map-marker>
+                    <map-marker #markerShopping
+                                *ngFor="let item of shoppings"
+                                [position]="{lat: item.latitude, lng: item.longitude}"
+                                [options]="getMarkerOption('assets/img/icons/shopping_m.png',checkGroup.shoppings)"
+                                (mapClick)="openInfoWindow(markerShopping, item)">
+                    </map-marker>
+
+                    <map-info-window [options]="{maxWidth: 400}">
+                      <div *ngIf="selectedItem!=null">
+
+                        <span class="text-capitalize">{{selectedItem.name}}</span><br/>
+
+                        <span>
+                          <p *ngIf="selectedItem.email == null && selectedItem.email == undefined">N/A</p>
+                          <a *ngIf="selectedItem.email != null && selectedItem.email != undefined"
+                             target="_blank" href="mailto:{{selectedItem.email}}">{{selectedItem.email}}
+                          </a>
+                        </span><br/>
+
+                        <span class="text-capitalize">{{selectedItem.telephone ? selectedItem.telephone : 'N/A'}}</span><br/>
+                        <span class="text-capitalize">
+                          {{selectedItem.adresse1}}<br>{{selectedItem.adresse2}}
+                        </span><br/>
+                        <span class="text-capitalize">
+                          {{endroitService.getCity(selectedItem.city_id, cities).name + ' ' + selectedItem.zipcode}}
+                        </span><br/>
+                        <span>
+                          <p *ngIf="selectedItem.website == null && selectedItem.website == undefined">N/A</p>
+                          <a *ngIf="selectedItem.website != null && selectedItem.website != undefined"
+                             target="_blank" href="{{selectedItem.website}}">{{selectedItem.website}}
+                          </a>
+                        </span>
+
+                      </div>
+                    </map-info-window>
+                  </google-map>
+                  <div class="bg-white mat-elevation-z2 map-dashboard-control p-1">
+                    <div class="row fa fa-cutlery">
+                      <div class="col-md-12 col-form-label">
+                        <div class="form-check ml-1">
+                          <input class="form-check-input" id="hebergements" type="checkbox"
+                                 [(ngModel)]="checkGroup.hebergements">
+                          <label class="form-check-label text-capitalize" for="hebergements">hebergements</label>
+                        </div>
+                        <div class="form-check ml-1">
+                          <input class="form-check-input" id="restaurants" type="checkbox"
+                                 [(ngModel)]="checkGroup.restaurants">
+                          <label class="form-check-label text-capitalize" for="restaurants">restaurants</label>
+                        </div>
+                        <div class="form-check ml-1">
+                          <input class="form-check-input" id="shoppings" type="checkbox"
+                                 [(ngModel)]="checkGroup.shoppings">
+                          <label class="form-check-label text-capitalize" for="shoppings">shoppings</label>
+                        </div>
+                        <div class="form-check ml-1">
+                          <input class="form-check-input" id="events" type="checkbox" [(ngModel)]="checkGroup.events">
+                          <label class="form-check-label text-capitalize" for="events">events</label>
+                        </div>
+                        <div class="form-check ml-1">
+                          <input class="form-check-input" id="cultures" type="checkbox"
+                                 [(ngModel)]="checkGroup.cultures">
+                          <label class="form-check-label text-capitalize" for="cultures">cultures</label>
+                        </div>
+                        <div class="form-check ml-1">
+                          <input class="form-check-input" id="loisir" type="checkbox" [(ngModel)]="checkGroup.loisirs">
+                          <label class="form-check-label text-capitalize" for="loisir">loisir</label>
+                        </div>
+                        <div class="form-check ml-1">
+                          <input class="form-check-input" id="infos" type="checkbox" [(ngModel)]="checkGroup.infos">
+                          <label class="form-check-label text-capitalize" for="infos">infos</label>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div><!--/.row-->
+            </div><!--/.col-->
+          </div><!--/.row-->
+        </div>
+      </div>
+    </div><!--/.col-->
+  </div><!--/.row-->
+
+</div>

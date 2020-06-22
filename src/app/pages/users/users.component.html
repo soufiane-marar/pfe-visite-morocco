@@ -2,15 +2,20 @@
   <div class="row">
     <div class="col-sm-12 col-md-12">
       <div class="card">
+        <div class="card-header">
+          <div class="card-header-actions">
+            <button type="button" class="btn btn-success" tooltip="Actualiser la page"
+                    (click)="initData()">
+              <i class="icon-reload"></i>
+            </button>
+            <button type="button" class="btn btn-primary" tooltip="Ajouter un nouveau utilisateur"
+                    (click)="addUser()">
+              <i class="icon-plus"></i>
+            </button>
+          </div>
+        </div>
         <div class="card-body">
-          <button type="button" class="btn btn-primary pull-right mb-1" tooltip="Ajouter un nouveau utilisateur"
-                  (click)="addUser()">
-            <i class="icon-user-follow"></i>
-          </button>
-          <button type="button" class="btn btn-success pull-right mb-1 mr-2" tooltip="Actualiser la page"
-                  (click)="initData()">
-            <i class="icon-reload"></i>
-          </button>
+
           <table mat-table [dataSource]="usersSource" [width]="'100%'" class="mat-elevation-z3">
 
             <!--- Note that these columns can be defined in any order.

@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import {Observable} from 'rxjs';
+import {forkJoin, Observable} from 'rxjs';
 import {environment} from '../../environments/environment';
 import {City} from '../interfaces/City';
 import {Categorie} from '../interfaces/Categorie';
@@ -11,6 +11,19 @@ import {Categorie} from '../interfaces/Categorie';
 export class EndroitService {
 
   constructor(private http: HttpClient) {
+  }
+
+  public getEndroitsByCity(city_id: number): Observable<any> {
+
+    return forkJoin([
+      this.http.get<any>(`${environment.api_url}/hebergements?city_id=${city_id}`),
+      this.http.get<any>(`${environment.api_url}/restaurants?city_id=${city_id}`),
+      this.http.get<any>(`${environment.api_url}/shoppings?city_id=${city_id}`),
+      this.http.get<any>(`${environment.api_url}/cultures?city_id=${city_id}`),
+      this.http.get<any>(`${environment.api_url}/loisirs?city_id=${city_id}`),
+      this.http.get<any>(`${environment.api_url}/events?city_id=${city_id}`),
+      this.http.get<any>(`${environment.api_url}/infos?city_id=${city_id}`),
+    ]);
   }
 
   public getCities(): Observable<City[]> {

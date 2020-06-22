@@ -1,0 +1,8 @@
+.map-dashboard-control {
+  width: auto;
+  height: auto;
+  position: absolute;
+  top: 1vh;
+  left: 1.5vw;
+  border-radius: 3px;
+}
