@@ -47,9 +47,9 @@ export class ShoppingsComponent implements OnInit, OnDestroy {
         value => {
 
           this.ngxSpinner.hide();
-          this.cities = value[0];
-          this.categories = value[1];
-          this.shoppings = value[2];
+          this.cities = value[0]['data'];
+          this.categories = value[1]['data'];
+          this.shoppings = value[2]['data'];
           this.shoppingsSource = new MatTableDataSource<any>(this.shoppings);
         },
         error => {
@@ -82,7 +82,7 @@ export class ShoppingsComponent implements OnInit, OnDestroy {
       .then(reponse => {
         if (reponse == true) {
           this.ngxSpinner.show();
-          this.shoppingsService.deleteShopping(element.id)
+          this.shoppingsService.deleteShopping(element.reference)
             .pipe(take(1))
             .subscribe(
               value => {

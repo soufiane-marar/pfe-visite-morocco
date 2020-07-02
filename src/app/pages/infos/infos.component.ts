@@ -47,9 +47,9 @@ export class InfosComponent implements OnInit, OnDestroy {
         value => {
 
           this.ngxSpinner.hide();
-          this.cities = value[0];
-          this.categories = value[1];
-          this.infos = value[2];
+          this.cities = value[0]['data'];
+          this.categories = value[1]['data'];
+          this.infos = value[2]['data'];
           this.infosSource = new MatTableDataSource<any>(this.infos);
         },
         error => {
@@ -82,7 +82,7 @@ export class InfosComponent implements OnInit, OnDestroy {
       .then(reponse => {
         if (reponse == true) {
           this.ngxSpinner.show();
-          this.infoService.deleteInfo(element.id)
+          this.infoService.deleteInfo(element.reference)
             .pipe(take(1))
             .subscribe(
               value => {

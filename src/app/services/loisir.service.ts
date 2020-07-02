@@ -15,7 +15,7 @@ export class LoisirService {
     return this.http.get<any[]>(`${environment.api_url}/loisirs`);
   }
 
-  public getLoisir(id: number): Observable<any> {
+  public getLoisir(id: string): Observable<any> {
     return this.http.get<any>(`${environment.api_url}/loisirs/${id}`);
   }
 
@@ -23,11 +23,11 @@ export class LoisirService {
     return this.http.post<any>(`${environment.api_url}/loisirs`, loisir);
   }
 
-  public editLoisir(loisir: any, id: number): Observable<any> {
+  public editLoisir(loisir: any, id: string): Observable<any> {
     return this.http.put<any>(`${environment.api_url}/loisirs/${id}`, loisir);
   }
 
-  public deleteLoisir(id: number): Observable<any> {
+  public deleteLoisir(id: string): Observable<any> {
     return this.http.delete<any>(`${environment.api_url}/loisirs/${id}`);
   }
 }

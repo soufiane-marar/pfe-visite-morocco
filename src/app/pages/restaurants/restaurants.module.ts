@@ -12,24 +12,26 @@ import {MatDialogModule} from '@angular/material/dialog';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {NumbersOnlyModule} from '../../directives/numbers-only/numbers-only.module';
 import {MatSelectModule} from '@angular/material/select';
+import {AvatarModule} from 'ngx-avatar';
 
 
 @NgModule({
   declarations: [RestaurantsComponent, RestauDialogComponent],
   entryComponents: [RestauDialogComponent],
-  imports: [
-    CommonModule,
-    RestaurantsRoutingModule,
-    MatTableModule,
-    TooltipModule.forRoot(),
-    MatDialogModule,
-    FormsModule,
-    ReactiveFormsModule,
-    NumbersOnlyModule,
-    AlertModule.forRoot(),
-    MatSelectModule,
-    TimepickerModule.forRoot()
-  ],
+    imports: [
+        CommonModule,
+        RestaurantsRoutingModule,
+        MatTableModule,
+        TooltipModule.forRoot(),
+        MatDialogModule,
+        FormsModule,
+        ReactiveFormsModule,
+        NumbersOnlyModule,
+        AlertModule.forRoot(),
+        MatSelectModule,
+        TimepickerModule.forRoot(),
+        AvatarModule
+    ],
   providers: [EndroitService, RestaurantService]
 })
 export class RestaurantsModule {

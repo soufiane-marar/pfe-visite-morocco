@@ -15,7 +15,7 @@ export class CulturesService {
     return this.http.get<any[]>(`${environment.api_url}/cultures`);
   }
 
-  public getCulture(id: number): Observable<any> {
+  public getCulture(id: string): Observable<any> {
     return this.http.get<any>(`${environment.api_url}/cultures/${id}`);
   }
 
@@ -23,11 +23,11 @@ export class CulturesService {
     return this.http.post<any>(`${environment.api_url}/cultures`, info);
   }
 
-  public editCulture(info: any, id: number): Observable<any> {
+  public editCulture(info: any, id: string): Observable<any> {
     return this.http.put<any>(`${environment.api_url}/cultures/${id}`, info);
   }
 
-  public deleteCulture(id: number): Observable<any> {
+  public deleteCulture(id: string): Observable<any> {
     return this.http.delete<any>(`${environment.api_url}/cultures/${id}`);
   }
 }

@@ -11,6 +11,7 @@ import {HebergementsService} from '../../services/hebergements.service';
 import {MatDialogModule} from '@angular/material/dialog';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {NumbersOnlyModule} from '../../directives/numbers-only/numbers-only.module';
+import {AvatarModule} from 'ngx-avatar';
 
 
 @NgModule({
@@ -28,6 +29,7 @@ import {NumbersOnlyModule} from '../../directives/numbers-only/numbers-only.modu
         NumbersOnlyModule,
         AlertModule.forRoot(),
         TimepickerModule.forRoot(),
+        AvatarModule,
     ],
   providers: [EndroitService, HebergementsService]
 })

@@ -50,9 +50,9 @@ export class RestaurantsComponent implements OnInit, OnDestroy {
           console.log(value);
 
           this.ngxSpinner.hide();
-          this.cities = value[0];
-          this.categories = value[1];
-          this.restaurants = value[2];
+          this.cities = value[0]['data'];
+          this.categories = value[1]['data'];
+          this.restaurants = value[2]['data'];
           this.restaurantsSource = new MatTableDataSource<any>(this.restaurants);
         },
         error => {
@@ -85,7 +85,7 @@ export class RestaurantsComponent implements OnInit, OnDestroy {
       .then(reponse => {
         if (reponse == true) {
           this.ngxSpinner.show();
-          this.restaurantService.deleteRestaurant(element.id)
+          this.restaurantService.deleteRestaurant(element.reference)
             .pipe(take(1))
             .subscribe(
               value => {

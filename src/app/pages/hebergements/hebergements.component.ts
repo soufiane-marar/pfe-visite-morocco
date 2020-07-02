@@ -47,9 +47,9 @@ export class HebergementsComponent implements OnInit, OnDestroy {
         value => {
 
           this.ngxSpinner.hide();
-          this.cities = value[0];
-          this.categories = value[1];
-          this.hebergements = value[2];
+          this.cities = value[0]['data'];
+          this.categories = value[1]['data'];
+          this.hebergements = value[2]['data'];
           this.hebergementsSource = new MatTableDataSource<any>(this.hebergements);
         },
         error => {
@@ -82,7 +82,7 @@ export class HebergementsComponent implements OnInit, OnDestroy {
       .then(reponse => {
         if (reponse == true) {
           this.ngxSpinner.show();
-          this.hebergementsService.deleteHebergement(element.id)
+          this.hebergementsService.deleteHebergement(element.reference)
             .pipe(take(1))
             .subscribe(
               value => {

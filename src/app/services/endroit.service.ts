@@ -16,13 +16,13 @@ export class EndroitService {
   public getEndroitsByCity(city_id: number): Observable<any> {
 
     return forkJoin([
-      this.http.get<any>(`${environment.api_url}/hebergements?city_id=${city_id}`),
-      this.http.get<any>(`${environment.api_url}/restaurants?city_id=${city_id}`),
-      this.http.get<any>(`${environment.api_url}/shoppings?city_id=${city_id}`),
-      this.http.get<any>(`${environment.api_url}/cultures?city_id=${city_id}`),
-      this.http.get<any>(`${environment.api_url}/loisirs?city_id=${city_id}`),
-      this.http.get<any>(`${environment.api_url}/events?city_id=${city_id}`),
-      this.http.get<any>(`${environment.api_url}/infos?city_id=${city_id}`),
+      this.http.get<any>(`${environment.api_url}/cities/${city_id}/hebergements`),
+      this.http.get<any>(`${environment.api_url}/cities/${city_id}/restaurants`),
+      this.http.get<any>(`${environment.api_url}/cities/${city_id}/shoppings`),
+      this.http.get<any>(`${environment.api_url}/cities/${city_id}/cultures`),
+      this.http.get<any>(`${environment.api_url}/cities/${city_id}/loisirs`),
+      this.http.get<any>(`${environment.api_url}/cities/${city_id}/events`),
+      this.http.get<any>(`${environment.api_url}/cities/${city_id}/infos`),
     ]);
   }
 

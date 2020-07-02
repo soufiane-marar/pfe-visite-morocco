@@ -28,6 +28,7 @@ import {NgxSpinnerModule} from 'ngx-spinner';
 import {GoogleMapsModule} from '@angular/google-maps';
 import {MapDialogComponent} from './components/map-dialog/map-dialog.component';
 import {MatDialogModule} from '@angular/material/dialog';
+import {NotAuthGuard} from './services/login/not-auth.guard';
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true
@@ -77,7 +78,7 @@ const APP_CONTAINERS = [
       useClass: HashLocationStrategy
     },
     {provide: HTTP_INTERCEPTORS, useClass: HttpConfigInterceptor, multi: true},
-    AuthService, AuthGuard, RoleGuard, ErrorMessageService, AlertBoxService
+    AuthService, AuthGuard, NotAuthGuard, RoleGuard, ErrorMessageService, AlertBoxService
   ],
   bootstrap: [AppComponent]
 })

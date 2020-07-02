@@ -21,24 +21,21 @@ export class AuthService {
     return (localStorage.getItem(environment.token_key) !== null);
   }
 
-  checkservertoken(): Observable<any> {
-    return this.http.get(`${environment.api_url}/api/verifyAuth`);
-  }
-
   /**
    *
    * @returns Observable
    * @param body
    */
-  login(body: { username: any, password: any }): Observable<any> {
-    return this.http.post(`${environment.api_url}/api/login`, body);
+  login(body: { email: any, password: any }): Observable<any> {
+    return this.http.post(`${environment.api_url}/login`, body);
   }
 
   /**
-   * @description remove token from storage to logout
+   * @description remove token/session from storage to logout
    */
-  logout(): void {
+  removeTokenAndSession(): void {
     localStorage.removeItem(environment.token_key);
+    localStorage.removeItem(environment.session_name);
   }
 
   /**
@@ -69,6 +66,14 @@ export class AuthService {
    */
   setToken(token: string): void {
     localStorage.setItem(environment.token_key, token);
+  }
+
+  setSession(user: any): void {
+    localStorage.setItem(environment.session_name, JSON.stringify(user));
+  }
+
+  getSession(): { first_name: string, last_name: string, email: string, role: string } {
+    return JSON.parse(localStorage.getItem(environment.session_name));
   }
 
   /**

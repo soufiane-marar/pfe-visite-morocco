@@ -15,7 +15,7 @@ export class HebergementsService {
     return this.http.get<any[]>(`${environment.api_url}/hebergements`);
   }
 
-  public getHebergement(id: number): Observable<any> {
+  public getHebergement(id: string): Observable<any> {
     return this.http.get<any>(`${environment.api_url}/hebergements/${id}`);
   }
 
@@ -23,11 +23,11 @@ export class HebergementsService {
     return this.http.post<any>(`${environment.api_url}/hebergements`, hebergement);
   }
 
-  public editHebergement(hebergement: any, id: number): Observable<any> {
+  public editHebergement(hebergement: any, id: string): Observable<any> {
     return this.http.put<any>(`${environment.api_url}/hebergements/${id}`, hebergement);
   }
 
-  public deleteHebergement(id: number): Observable<any> {
+  public deleteHebergement(id: string): Observable<any> {
     return this.http.delete<any>(`${environment.api_url}/hebergements/${id}`);
   }
 }

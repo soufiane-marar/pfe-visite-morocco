@@ -47,9 +47,9 @@ export class EventsComponent implements OnInit, OnDestroy {
         value => {
 
           this.ngxSpinner.hide();
-          this.cities = value[0];
-          this.categories = value[1];
-          this.events = value[2];
+          this.cities = value[0]['data'];
+          this.categories = value[1]['data'];
+          this.events = value[2]['data'];
           this.eventsSource = new MatTableDataSource<any>(this.events);
         },
         error => {
@@ -82,7 +82,7 @@ export class EventsComponent implements OnInit, OnDestroy {
       .then(reponse => {
         if (reponse == true) {
           this.ngxSpinner.show();
-          this.eventsService.deleteEvent(element.id)
+          this.eventsService.deleteEvent(element.reference)
             .pipe(take(1))
             .subscribe(
               value => {

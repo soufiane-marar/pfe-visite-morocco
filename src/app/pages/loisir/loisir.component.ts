@@ -47,9 +47,9 @@ export class LoisirComponent implements OnInit, OnDestroy {
         value => {
 
           this.ngxSpinner.hide();
-          this.cities = value[0];
-          this.categories = value[1];
-          this.loisirs = value[2];
+          this.cities = value[0]['data'];
+          this.categories = value[1]['data'];
+          this.loisirs = value[2]['data'];
           this.loisirsSource = new MatTableDataSource<any>(this.loisirs);
         },
         error => {
@@ -82,7 +82,7 @@ export class LoisirComponent implements OnInit, OnDestroy {
       .then(reponse => {
         if (reponse == true) {
           this.ngxSpinner.show();
-          this.loisirService.deleteLoisir(element.id)
+          this.loisirService.deleteLoisir(element.reference)
             .pipe(take(1))
             .subscribe(
               value => {

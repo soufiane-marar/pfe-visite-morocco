@@ -1,7 +1,10 @@
 import {INavData} from '@coreui/angular';
 
 export const navItems: INavData[] = [
-
+  {
+    title: true,
+    name: '',
+  },
   {
     name: 'Dashboard',
     icon: 'fa fa-desktop',

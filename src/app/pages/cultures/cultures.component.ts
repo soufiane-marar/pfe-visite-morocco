@@ -47,9 +47,9 @@ export class CulturesComponent implements OnInit, OnDestroy {
         value => {
 
           this.ngxSpinner.hide();
-          this.cities = value[0];
-          this.categories = value[1];
-          this.cultures = value[2];
+          this.cities = value[0]['data'];
+          this.categories = value[1]['data'];
+          this.cultures = value[2]['data'];
           this.culturesSource = new MatTableDataSource<any>(this.cultures);
         },
         error => {
@@ -82,7 +82,7 @@ export class CulturesComponent implements OnInit, OnDestroy {
       .then(reponse => {
         if (reponse == true) {
           this.ngxSpinner.show();
-          this.culturesService.deleteCulture(element.id)
+          this.culturesService.deleteCulture(element.reference)
             .pipe(take(1))
             .subscribe(
               value => {

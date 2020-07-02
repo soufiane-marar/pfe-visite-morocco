@@ -5,6 +5,8 @@
 
 export const environment = {
   production: false,
-  api_url: 'http://localhost:3000',
-  token_key: 'my_token_key'
+  api_url: 'https://apiguidetravel.herokuapp.com/api/v1',
+  //api_url: 'http://localhost:3000',
+  token_key: 'access_token',
+  session_name: 'user-session'
 };

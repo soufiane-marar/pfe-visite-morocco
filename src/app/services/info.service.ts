@@ -15,7 +15,7 @@ export class InfoService {
     return this.http.get<any[]>(`${environment.api_url}/infos`);
   }
 
-  public getInfo(id: number): Observable<any> {
+  public getInfo(id: string): Observable<any> {
     return this.http.get<any>(`${environment.api_url}/infos/${id}`);
   }
 
@@ -23,11 +23,11 @@ export class InfoService {
     return this.http.post<any>(`${environment.api_url}/infos`, info);
   }
 
-  public editInfo(info: any, id: number): Observable<any> {
+  public editInfo(info: any, id: string): Observable<any> {
     return this.http.put<any>(`${environment.api_url}/infos/${id}`, info);
   }
 
-  public deleteInfo(id: number): Observable<any> {
+  public deleteInfo(id: string): Observable<any> {
     return this.http.delete<any>(`${environment.api_url}/infos/${id}`);
   }
 }

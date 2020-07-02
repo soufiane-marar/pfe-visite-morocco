@@ -3,9 +3,9 @@ import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {ErrorMessageService} from '../../utils/error-message.service';
 import {AuthService} from '../../services/login/auth.service';
 import {Subject} from 'rxjs';
-import {AlertBoxService} from '../../utils/alert-box.service';
 import {Router} from '@angular/router';
 import {takeUntil} from 'rxjs/operators';
+import {NgxSpinnerService} from 'ngx-spinner';
 
 @Component({
   selector: 'app-login',
@@ -22,18 +22,13 @@ export class LoginComponent implements OnInit {
 
   constructor(private formBuilder: FormBuilder, public frErrSrv: ErrorMessageService,
               private authService: AuthService, private router: Router,
-              private alertBoxService: AlertBoxService) {
+              private ngxSpinnerService: NgxSpinnerService) {
   }
 
   ngOnInit() {
 
-
-    if (!this.authService.isTokenExpired()) {
-      this.router.navigate(['']);
-    }
-
     this.loginForm = this.formBuilder.group({
-      username: new FormControl('', [Validators.required, Validators.minLength(4)]),
+      email: new FormControl('', [Validators.required, Validators.email]),
       password: new FormControl('', [Validators.required, Validators.minLength(4)])
     });
 
@@ -44,19 +39,22 @@ export class LoginComponent implements OnInit {
     if (this.loginForm.invalid) {
       return;
     }
-
+    this.ngxSpinnerService.show();
     this.authService.login(this.loginForm.value)
       .pipe(
         takeUntil(this.unsubscribeLogin)
       )
       .subscribe(
         value => {
+          this.ngxSpinnerService.hide();
+          this.authService.setToken(value.access_token);
+          this.authService.setSession(value.user);
 
-          this.authService.setToken(value.data.accessToken);
           this.hasError = false;
           this.router.navigate(['']);
         },
         error => {
+          this.ngxSpinnerService.hide();
           console.error('Error de serveur !', error);
 
           this.alertContent = `<strong>Erreur(${error.status}), ${error.statusText}</strong> ${error.error.message}`;

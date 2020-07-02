@@ -1,8 +1,8 @@
 <app-header
   [navbarBrandRouterLink]="['/home']"
   [fixed]="true"
-  [navbarBrandFull]="{src: 'assets/img/brand/logo.svg', width: 89, height: 25, alt: 'CoreUI Logo'}"
-  [navbarBrandMinimized]="{src: 'assets/img/brand/sygnet.svg', width: 30, height: 30, alt: 'CoreUI Logo'}"
+  [navbarBrandFull]="{src: 'assets/img/brand/logo.png', width: 100, height: 54, alt: 'Visit Morocco Logo'}"
+  [navbarBrandMinimized]="{src: 'assets/img/brand/sygnet.svg', width: 30, height: 30, alt: 'Visit Morocco Logo'}"
   [sidebarToggler]="'lg'"
   [asideMenuToggler]="false"
   [mobileAsideMenuToggler]="false">
@@ -30,14 +30,16 @@
     <li class="nav-item dropdown" dropdown placement="bottom right">
       <a class="nav-link" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"
          dropdownToggle (click)="false">
-        <img src="assets/img/avatars/6.jpg" class="img-avatar" alt="admin@bootstrapmaster.com"/>
+        <img src="assets/img/avatars/6.jpg" class="img-avatar" alt="{{userSession.email}}"/>
       </a>
       <div class="dropdown-menu dropdown-menu-right" *dropdownMenu aria-labelledby="simple-dropdown">
-        <div class="dropdown-header text-center"><strong>Soufiane Marar</strong><br/><small>Administrateur</small></div>
+        <div class="dropdown-header text-center">
+          <strong>{{userSession.first_name + ' ' + userSession.last_name}}</strong><br/>
+          <small class="text-capitalize">{{userSession.role}}</small></div>
         <div class="divider"></div>
         <a class="dropdown-item" href="#"><i class="fa fa-cog"></i> Sécurité</a>
         <div class="divider"></div>
-        <a class="dropdown-item" href="#"><i class="fa fa-sign-out"></i> Déconnexion</a>
+        <a class="dropdown-item" href="#" (click)="logout()"><i class="fa fa-sign-out"></i> Déconnexion</a>
       </div>
     </li>
   </ul>

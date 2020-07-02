@@ -15,7 +15,7 @@ export class EventsService {
     return this.http.get<any[]>(`${environment.api_url}/events`);
   }
 
-  public getEvent(id: number): Observable<any> {
+  public getEvent(id: string): Observable<any> {
     return this.http.get<any>(`${environment.api_url}/events/${id}`);
   }
 
@@ -23,11 +23,11 @@ export class EventsService {
     return this.http.post<any>(`${environment.api_url}/events`, info);
   }
 
-  public editEvent(info: any, id: number): Observable<any> {
+  public editEvent(info: any, id: string): Observable<any> {
     return this.http.put<any>(`${environment.api_url}/events/${id}`, info);
   }
 
-  public deleteEvent(id: number): Observable<any> {
+  public deleteEvent(id: string): Observable<any> {
     return this.http.delete<any>(`${environment.api_url}/events/${id}`);
   }
 }

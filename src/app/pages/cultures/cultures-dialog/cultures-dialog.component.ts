@@ -52,7 +52,7 @@ export class CulturesDialogComponent implements OnInit {
         categorie_id: new FormControl(hbg ? hbg.categorie_id : null, [Validators.required]),
         longitude: new FormControl(hbg ? hbg.longitude : null, [Validators.required]),
         latitude: new FormControl(hbg ? hbg.latitude : null, [Validators.required]),
-        type: new FormControl(hbg ? hbg.type : null, [Validators.required]),
+        type: new FormControl(hbg ? hbg.extra.type : null, [Validators.required]),
         media: new FormControl(hbg ? hbg.media.length + ' images' : null, [Validators.required]),
       },
       {validators: [CustomValidators.CheckLatitude, CustomValidators.CheckLongitude]}
@@ -256,7 +256,7 @@ export class CulturesDialogComponent implements OnInit {
     body.media = this.media;
 
     this.ngxSpinner.show();
-    this.culturesService.editCulture(body, this.data.culture.id)
+    this.culturesService.editCulture(body, this.data.culture.reference)
       .pipe(take(1))
       .subscribe(
         value => {

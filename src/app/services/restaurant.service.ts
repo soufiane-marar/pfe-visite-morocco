@@ -15,7 +15,7 @@ export class RestaurantService {
     return this.http.get<any[]>(`${environment.api_url}/restaurants`);
   }
 
-  public getRestaurant(id: number): Observable<any> {
+  public getRestaurant(id: string): Observable<any> {
     return this.http.get<any>(`${environment.api_url}/restaurants/${id}`);
   }
 
@@ -23,11 +23,11 @@ export class RestaurantService {
     return this.http.post<any>(`${environment.api_url}/restaurants`, hebergement);
   }
 
-  public editRestaurant(hebergement: any, id: number): Observable<any> {
+  public editRestaurant(hebergement: any, id: string): Observable<any> {
     return this.http.put<any>(`${environment.api_url}/restaurants/${id}`, hebergement);
   }
 
-  public deleteRestaurant(id: number): Observable<any> {
+  public deleteRestaurant(id: string): Observable<any> {
     return this.http.delete<any>(`${environment.api_url}/restaurants/${id}`);
   }
 }

@@ -94,13 +94,13 @@ export class IndexComponent implements OnInit, OnDestroy {
         value => {
           this.ngxSpinner.hide();
           console.log(value);
-          this.hebergements = value[0];
-          this.restaurants = value[1];
-          this.shoppings = value[2];
-          this.cultures = value[3];
-          this.loisirs = value[4];
-          this.events = value[5];
-          this.infos = value[6];
+          this.hebergements = value[0]['data'];
+          this.restaurants = value[1]['data'];
+          this.shoppings = value[2]['data'];
+          this.cultures = value[3]['data'];
+          this.loisirs = value[4]['data'];
+          this.events = value[5]['data'];
+          this.infos = value[6]['data'];
 
           this.setCenterMap();
           this.zoom = 18;
@@ -142,7 +142,7 @@ export class IndexComponent implements OnInit, OnDestroy {
       .subscribe(
         value => {
           this.ngxSpinner.hide();
-          this.cities = value;
+          this.cities = value['data'];
         },
         error => {
           this.ngxSpinner.hide();

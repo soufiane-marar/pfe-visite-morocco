@@ -259,7 +259,7 @@ export class RestauDialogComponent implements OnInit {
     body.media = this.media;
 
     this.ngxSpinner.show();
-    this.restaurantService.editRestaurant(body, this.data.restaurant.id)
+    this.restaurantService.editRestaurant(body, this.data.restaurant.reference)
       .pipe(take(1))
       .subscribe(
         value => {
