@@ -1,6 +1,6 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {UsersService} from '../../services/users.service';
-import {forkJoin, Subject} from 'rxjs';
+import {Subject} from 'rxjs';
 import {take, takeUntil} from 'rxjs/operators';
 import {User} from '../../interfaces/User';
 import {Role} from '../../interfaces/Role';
@@ -20,7 +20,7 @@ export class UsersComponent implements OnInit, OnDestroy {
 
   private subject = new Subject<void>();
 
-  public displayedColumns: string[] = ['fullname', 'role', 'email', 'username', 'actions'];
+  public displayedColumns: string[] = ['firstname', 'lastname', 'role', 'email', 'actions'];
   public usersSource: any;
 
   public users: User[] = [];
@@ -41,15 +41,17 @@ export class UsersComponent implements OnInit, OnDestroy {
 
   public initData(): void {
     this.ngxSpinner.show();
-    forkJoin([this.usersService.getUsers(), this.usersService.getRoles()])
+
+    this.roles = this.usersService.roles;
+
+    this.usersService.getUsers()
       .pipe(takeUntil(this.subject))
       .subscribe(
         value => {
 
           this.ngxSpinner.hide();
-          this.users = value[0];
+          this.users = value['data'];
           this.usersSource = new MatTableDataSource<User>(this.users);
-          this.roles = value[1];
         },
         error => {
           this.ngxSpinner.hide();
@@ -75,18 +77,7 @@ export class UsersComponent implements OnInit, OnDestroy {
       .subscribe(result => {
         console.log('The dialog was closed', result);
         if (result) {
-          if (isnew) {
-            this.users.push(result);
-            this.usersSource = new MatTableDataSource<User>(this.users);
-          } else {
-            let index = this.users.indexOf(user);
-
-            if (index !== -1) {
-              this.users[index] = result;
-            }
-
-            this.usersSource = new MatTableDataSource<User>(this.users);
-          }
+          this.initData();
         }
       });
   }
@@ -101,7 +92,7 @@ export class UsersComponent implements OnInit, OnDestroy {
   }
 
   public deleteUser(user: User): void {
-    this.alertBoxService.confirm('Suppression', 'êtes-vous sur de supprimer ' + user.firstname + ' ' + user.lastname + ' ?')
+    this.alertBoxService.confirm('Suppression', 'êtes-vous sur de supprimer ' + user.first_name + ' ' + user.last_name + ' ?')
       .then(reponse => {
         if (reponse == true) {
           this.ngxSpinner.show();

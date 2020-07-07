@@ -55,6 +55,11 @@ export const routes: Routes = [
         loadChildren: () => import('./pages/users/users.module').then(m => m.UsersModule)
       },
       {
+        path: 'user-settings',
+        canActivate: [AuthGuard],
+        loadChildren: () => import('./pages/user-settings/user-settings.module').then(m => m.UserSettingsModule)
+      },
+      {
         path: 'hebergements',
         canActivate: [AuthGuard],
         loadChildren: () => import('./pages/hebergements/hebergements.module').then(m => m.HebergementsModule)

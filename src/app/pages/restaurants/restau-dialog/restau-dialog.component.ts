@@ -4,6 +4,7 @@ import {ErrorMessageService} from '../../../utils/error-message.service';
 import {AlertBoxService} from '../../../utils/alert-box.service';
 import {NgxSpinnerService} from 'ngx-spinner';
 import {MAT_DIALOG_DATA, MatDialog, MatDialogRef} from '@angular/material/dialog';
+import * as moment from 'moment';
 import {CustomValidators} from '../../../validators/custom.validator';
 import {MapDialogComponent} from '../../../components/map-dialog/map-dialog.component';
 import {take} from 'rxjs/operators';
@@ -35,11 +36,20 @@ export class RestauDialogComponent implements OnInit {
 
     this.media = hbg ? hbg.media : [];
 
+    let specialite: string[] = [], prixCarte = null, prixMoyenne = null;
+    if (hbg && hbg.extra) {
+      specialite = hbg.extra.specialite.toString().split(',');
+      prixCarte = hbg.extra.prixCarte;
+      prixMoyenne = hbg.extra.prixMoyenne;
+    }
+
+    console.log(hbg);
+
     this.formGrp = this.formBuilder.group(
       {
         name: new FormControl(hbg ? hbg.name : null, [Validators.required, Validators.minLength(4)]),
-        startTime: new FormControl(hbg ? hbg.startTime : null, [Validators.required]),
-        endTime: new FormControl(hbg ? hbg.endTime : null, [Validators.required]),
+        startTime: new FormControl(hbg ? moment().format('YYYY-MM-DDT') + hbg.startTime : null, [Validators.required]),
+        endTime: new FormControl(hbg ? moment().format('YYYY-MM-DDT') + hbg.endTime : null, [Validators.required]),
         description: new FormControl(hbg ? hbg.description : null, [Validators.minLength(15)]),
         adresse1: new FormControl(hbg ? hbg.adresse1 : null, [Validators.required]),
         adresse2: new FormControl(hbg ? hbg.adresse2 : null),
@@ -48,13 +58,13 @@ export class RestauDialogComponent implements OnInit {
         website: new FormControl(hbg ? hbg.website : null),
         zipcode: new FormControl(hbg ? hbg.zipcode : null),
         city_id: new FormControl(hbg ? hbg.city_id : null, [Validators.required]),
-        logo: new FormControl(hbg ? hbg.logo : null, [Validators.required]),
+        /*logo: new FormControl(hbg ? hbg.logo : null, [Validators.required]),*/
         categorie_id: new FormControl(hbg ? hbg.categorie_id : null, [Validators.required]),
         longitude: new FormControl(hbg ? hbg.longitude : null, [Validators.required]),
         latitude: new FormControl(hbg ? hbg.latitude : null, [Validators.required]),
-        specialite: new FormControl(hbg ? hbg.specialite.toString().split(',') : null, [Validators.required]),
-        prixCarte: new FormControl(hbg ? hbg.prixCarte : null, [Validators.required]),
-        prixMoyenne: new FormControl(hbg ? hbg.prixMoyenne : null, [Validators.required]),
+        specialite: new FormControl(specialite, [Validators.required]),
+        prixCarte: new FormControl(prixCarte, [Validators.required]),
+        prixMoyenne: new FormControl(prixMoyenne, [Validators.required]),
         media: new FormControl(hbg ? hbg.media.length + ' images' : null, [Validators.required]),
       },
       {validators: [CustomValidators.CheckLatitude, CustomValidators.CheckLongitude]}
@@ -93,8 +103,8 @@ export class RestauDialogComponent implements OnInit {
     dialogRef.afterClosed()
       .pipe(take(1))
       .subscribe(result => {
-         this.formGrp.controls['longitude'].markAsTouched();
-                this.formGrp.controls['latitude'].markAsTouched();
+        this.formGrp.controls['longitude'].markAsTouched();
+        this.formGrp.controls['latitude'].markAsTouched();
         if (result) {
           this.formGrp.controls['longitude'].setValue(result.lng);
           this.formGrp.controls['latitude'].setValue(result.lat);
@@ -225,7 +235,13 @@ export class RestauDialogComponent implements OnInit {
   private add(): void {
     let body: any = this.formGrp.value;
 
+    body.specialite = body.specialite.toString();
     body.media = this.media;
+    body.startTime = moment(body.startTime).format('HH:mm:ss');
+    body.endTime = moment(body.endTime).format('HH:mm:ss');
+    body.type = 'RST';
+
+    console.log(body);
 
     this.ngxSpinner.show();
     this.restaurantService.addRestaurant(body)
@@ -257,6 +273,9 @@ export class RestauDialogComponent implements OnInit {
 
     body.specialite = body.specialite.toString();
     body.media = this.media;
+    body.startTime = moment(body.startTime).format('HH:mm:ss');
+    body.endTime = moment(body.endTime).format('HH:mm:ss');
+    body.type = 'RST';
 
     this.ngxSpinner.show();
     this.restaurantService.editRestaurant(body, this.data.restaurant.reference)

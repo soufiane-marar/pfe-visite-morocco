@@ -124,18 +124,7 @@ export class EventsComponent implements OnInit, OnDestroy {
       .subscribe(result => {
         console.log('The dialog was closed', result);
         if (result) {
-          if (isnew) {
-            this.events.push(result);
-            this.eventsSource = new MatTableDataSource<any>(this.events);
-          } else {
-            let index = this.events.indexOf(event);
-
-            if (index !== -1) {
-              this.events[index] = result;
-            }
-
-            this.eventsSource = new MatTableDataSource<any>(this.events);
-          }
+          this.initData();
         }
       });
   }

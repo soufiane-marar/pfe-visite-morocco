@@ -127,18 +127,7 @@ export class RestaurantsComponent implements OnInit, OnDestroy {
       .subscribe(result => {
         console.log('The dialog was closed', result);
         if (result) {
-          if (isnew) {
-            this.restaurants.push(result);
-            this.restaurantsSource = new MatTableDataSource<any>(this.restaurants);
-          } else {
-            let index = this.restaurants.indexOf(restaurant);
-
-            if (index !== -1) {
-              this.restaurants[index] = result;
-            }
-
-            this.restaurantsSource = new MatTableDataSource<any>(this.restaurants);
-          }
+          this.initData();
         }
       });
   }

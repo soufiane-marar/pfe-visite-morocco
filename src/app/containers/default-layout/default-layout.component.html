@@ -37,7 +37,7 @@
           <strong>{{userSession.first_name + ' ' + userSession.last_name}}</strong><br/>
           <small class="text-capitalize">{{userSession.role}}</small></div>
         <div class="divider"></div>
-        <a class="dropdown-item" href="#"><i class="fa fa-cog"></i> Sécurité</a>
+        <a class="dropdown-item" [routerLink]="'/user-settings'"><i class="fa fa-cog"></i> Sécurité</a>
         <div class="divider"></div>
         <a class="dropdown-item" href="#" (click)="logout()"><i class="fa fa-sign-out"></i> Déconnexion</a>
       </div>

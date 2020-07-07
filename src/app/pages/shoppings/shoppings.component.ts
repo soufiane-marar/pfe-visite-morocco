@@ -124,18 +124,7 @@ export class ShoppingsComponent implements OnInit, OnDestroy {
       .subscribe(result => {
         console.log('The dialog was closed', result);
         if (result) {
-          if (isnew) {
-            this.shoppings.push(result);
-            this.shoppingsSource = new MatTableDataSource<any>(this.shoppings);
-          } else {
-            let index = this.shoppings.indexOf(shopping);
-
-            if (index !== -1) {
-              this.shoppings[index] = result;
-            }
-
-            this.shoppingsSource = new MatTableDataSource<any>(this.shoppings);
-          }
+          this.initData();
         }
       });
   }

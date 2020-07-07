@@ -30,6 +30,10 @@ export class AuthService {
     return this.http.post(`${environment.api_url}/login`, body);
   }
 
+  logout(): Observable<any> {
+    return this.http.post(`${environment.api_url}/logout`, null);
+  }
+
   /**
    * @description remove token/session from storage to logout
    */

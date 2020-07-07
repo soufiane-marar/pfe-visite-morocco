@@ -124,18 +124,7 @@ export class CulturesComponent implements OnInit, OnDestroy {
       .subscribe(result => {
         console.log('The dialog was closed', result);
         if (result) {
-          if (isnew) {
-            this.cultures.push(result);
-            this.culturesSource = new MatTableDataSource<any>(this.cultures);
-          } else {
-            let index = this.cultures.indexOf(culture);
-
-            if (index !== -1) {
-              this.cultures[index] = result;
-            }
-
-            this.culturesSource = new MatTableDataSource<any>(this.cultures);
-          }
+          this.initData();
         }
       });
   }

@@ -39,28 +39,7 @@
       </div>
     </div><!--/.row-->
 
-    <div class="form-group row">
-      <div class="form-group col-sm-8">
-        <label for="logo">Choisissez un logo</label>
-        <input type="file" class="form-control" id="logo" accept="image/x-png,image/jpeg"
-               (change)="selectLogo($event)" [ngClass]="{'is-invalid': formGrp.controls['logo'].invalid && formGrp.controls['logo'].touched}">
-        <input type="hidden" class="form-control" formControlName="logo">
-        <div class="invalid-feedback" *ngIf="formGrp.controls['logo'].invalid && formGrp.controls['logo'].touched">
-          <p *ngIf="formGrp.controls['logo'].hasError('img_type')">
-            {{formGrp.controls['logo'].getError('img_type')}}
-          </p>
-          <p *ngIf="formGrp.controls['logo'].hasError('img_size')">
-            {{formGrp.controls['logo'].getError('img_size')}}
-          </p>
-          <p *ngIf="formGrp.controls['logo'].hasError('img_dimentions')">
-            {{formGrp.controls['logo'].getError('img_dimentions')}}
-          </p>
-        </div>
-      </div>
-      <div class="form-group col-sm-4" *ngIf="formGrp.controls['logo'].valid">
-        <img [src]="formGrp.controls['logo'].value" alt="logo" class="logo-preview">
-      </div>
-    </div>
+
     <div class="form-group row">
       <div class="form-group col-sm-4">
         <label for="email">Email</label>

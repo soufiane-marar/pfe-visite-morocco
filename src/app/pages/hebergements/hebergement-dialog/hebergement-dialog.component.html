@@ -41,22 +41,7 @@
         </div>
       </div>
     </div><!--/.row-->
-    <div class="form-group row">
-      <div class="form-group col-sm-8">
-        <label for="logo">Choisissez un logo</label>
-        <input type="file" class="form-control" id="logo" accept="image/x-png,image/jpeg"
-               (change)="selectLogo($event)">
-        <input type="hidden" class="form-control" formControlName="logo">
-        <div class="invalid-feedback" *ngIf="formGrp.controls['logo'].invalid && formGrp.controls['logo'].touched">
-          <p *ngIf="formGrp.controls['logo'].hasError('required')">
-            {{frErrSrv.setErrorMessage('required')}}
-          </p>
-        </div>
-      </div>
-      <div class="form-group col-sm-4" *ngIf="formGrp.controls['logo'].valid">
-        <img [src]="formGrp.controls['logo'].value" alt="logo" class="logo-preview">
-      </div>
-    </div>
+
     <div class="form-group row">
       <div class="form-group col-sm-4">
         <label for="email">Email</label>
@@ -272,8 +257,12 @@
           <label class="form-check-label" for="restaurant">Restaurant</label>
         </div>
         <div class="form-check form-check-inline mr-1">
-          <input class="form-check-input" id="piscince" type="checkbox" formControlName="piscince">
-          <label class="form-check-label" for="piscince">Piscince</label>
+          <input class="form-check-input" id="piscine" type="checkbox" formControlName="piscine">
+          <label class="form-check-label" for="piscine">Piscince</label>
+        </div>
+        <div class="form-check form-check-inline mr-1">
+          <input class="form-check-input" id="spa" type="checkbox" formControlName="spa">
+          <label class="form-check-label" for="spa">Spa</label>
         </div>
         <div class="form-check form-check-inline mr-1">
           <input class="form-check-input" id="fitness" type="checkbox" formControlName="fitness">

@@ -4,6 +4,7 @@ import {ErrorMessageService} from '../../../utils/error-message.service';
 import {AlertBoxService} from '../../../utils/alert-box.service';
 import {NgxSpinnerService} from 'ngx-spinner';
 import {MAT_DIALOG_DATA, MatDialog, MatDialogRef} from '@angular/material/dialog';
+import * as moment from 'moment';
 import {CustomValidators} from '../../../validators/custom.validator';
 import {MapDialogComponent} from '../../../components/map-dialog/map-dialog.component';
 import {take} from 'rxjs/operators';
@@ -38,8 +39,8 @@ export class LoisirDialogComponent implements OnInit {
     this.formGrp = this.formBuilder.group(
       {
         name: new FormControl(hbg ? hbg.name : null, [Validators.required, Validators.minLength(4)]),
-        startTime: new FormControl(hbg ? hbg.startTime : null, [Validators.required]),
-        endTime: new FormControl(hbg ? hbg.endTime : null, [Validators.required]),
+        startTime: new FormControl(hbg ? moment().format('YYYY-MM-DDT') + hbg.startTime : null, [Validators.required]),
+        endTime: new FormControl(hbg ? moment().format('YYYY-MM-DDT') + hbg.endTime : null, [Validators.required]),
         description: new FormControl(hbg ? hbg.description : null, [Validators.minLength(15)]),
         adresse1: new FormControl(hbg ? hbg.adresse1 : null, [Validators.required]),
         adresse2: new FormControl(hbg ? hbg.adresse2 : null),
@@ -48,7 +49,7 @@ export class LoisirDialogComponent implements OnInit {
         website: new FormControl(hbg ? hbg.website : null),
         zipcode: new FormControl(hbg ? hbg.zipcode : null),
         city_id: new FormControl(hbg ? hbg.city_id : null, [Validators.required]),
-        logo: new FormControl(hbg ? hbg.logo : null),
+        /*logo: new FormControl(hbg ? hbg.logo : null),*/
         categorie_id: new FormControl(hbg ? hbg.categorie_id : null, [Validators.required]),
         longitude: new FormControl(hbg ? hbg.longitude : null, [Validators.required]),
         latitude: new FormControl(hbg ? hbg.latitude : null, [Validators.required]),
@@ -224,6 +225,8 @@ export class LoisirDialogComponent implements OnInit {
     let body: any = this.formGrp.value;
 
     body.media = this.media;
+    body.startTime = moment(body.startTime).format('HH:mm:ss');
+    body.endTime = moment(body.endTime).format('HH:mm:ss');
 
     this.ngxSpinner.show();
     this.loisirsService.addLoisir(body)
@@ -254,6 +257,8 @@ export class LoisirDialogComponent implements OnInit {
     let body: any = this.formGrp.value;
 
     body.media = this.media;
+    body.startTime = moment(body.startTime).format('HH:mm:ss');
+    body.endTime = moment(body.endTime).format('HH:mm:ss');
 
     this.ngxSpinner.show();
     this.loisirsService.editLoisir(body, this.data.loisir.reference)

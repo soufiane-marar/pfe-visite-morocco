@@ -4,34 +4,34 @@
     <div class="form-group">
       <div class="row">
         <div class="form-group col-sm-6">
-          <label for="lastname">Nom</label>
-          <input type="text" class="form-control" id="lastname" formControlName="lastname"
+          <label for="last_name">Nom</label>
+          <input type="text" class="form-control" id="last_name" formControlName="last_name"
                  placeholder="Entrez votre nom"
-                 [ngClass]="{'is-invalid': userForm.controls['lastname'].invalid && userForm.controls['lastname'].touched}">
+                 [ngClass]="{'is-invalid': userForm.controls['last_name'].invalid && userForm.controls['last_name'].touched}">
 
           <div class="invalid-feedback"
-               *ngIf="userForm.controls['lastname'].invalid && userForm.controls['lastname'].touched">
-            <p *ngIf="userForm.controls['lastname'].hasError('required')">
+               *ngIf="userForm.controls['last_name'].invalid && userForm.controls['last_name'].touched">
+            <p *ngIf="userForm.controls['last_name'].hasError('required')">
               {{frErrSrv.setErrorMessage('required')}}
             </p>
-            <p *ngIf="userForm.controls['lastname'].hasError('minlength')">
+            <p *ngIf="userForm.controls['last_name'].hasError('minlength')">
               {{frErrSrv.setErrorMessage('minlength', 2)}}
             </p>
           </div>
 
         </div>
         <div class="form-group col-sm-6">
-          <label for="firstname">Prénom</label>
-          <input type="text" class="form-control" id="firstname" formControlName="firstname"
+          <label for="first_name">Prénom</label>
+          <input type="text" class="form-control" id="first_name" formControlName="first_name"
                  placeholder="Entrez votre prénom"
-                 [ngClass]="{'is-invalid': userForm.controls['firstname'].invalid && userForm.controls['firstname'].touched}">
+                 [ngClass]="{'is-invalid': userForm.controls['first_name'].invalid && userForm.controls['first_name'].touched}">
 
           <div class="invalid-feedback"
-               *ngIf="userForm.controls['firstname'].invalid && userForm.controls['firstname'].touched">
-            <p *ngIf="userForm.controls['firstname'].hasError('required')">
+               *ngIf="userForm.controls['first_name'].invalid && userForm.controls['first_name'].touched">
+            <p *ngIf="userForm.controls['first_name'].hasError('required')">
               {{frErrSrv.setErrorMessage('required')}}
             </p>
-            <p *ngIf="userForm.controls['firstname'].hasError('minlength')">
+            <p *ngIf="userForm.controls['first_name'].hasError('minlength')">
               {{frErrSrv.setErrorMessage('minlength', 2)}}
             </p>
           </div>
@@ -57,34 +57,17 @@
     </div>
     <div class="form-group">
       <label for="role">Role</label>
-      <select class="form-control" id="role" formControlName="role_id"
-              [ngClass]="{'is-invalid': userForm.controls['role_id'].invalid && userForm.controls['role_id'].touched}">
+      <select class="form-control" id="role" formControlName="role"
+              [ngClass]="{'is-invalid': userForm.controls['role'].invalid && userForm.controls['role'].touched}">
         <option disabled [value]="null">-- Choisissez un role</option>
-        <option *ngFor="let item of data.roles" [value]="item.id">{{item.libelle}}</option>
+        <option *ngFor="let item of data.roles" [value]="item.libelle" class="text-capitalize">{{item.libelle}}</option>
       </select>
       <div class="invalid-feedback"
-           *ngIf="userForm.controls['role_id'].invalid && userForm.controls['role_id'].touched">
-        <p *ngIf="userForm.controls['role_id'].hasError('required')">
+           *ngIf="userForm.controls['role'].invalid && userForm.controls['role'].touched">
+        <p *ngIf="userForm.controls['role'].hasError('required')">
           {{frErrSrv.setErrorMessage('required')}}
         </p>
       </div>
-    </div>
-    <div class="form-group">
-      <label for="username">Pseudo</label>
-      <input type="text" class="form-control" id="username" formControlName="username"
-             placeholder="Entrez votre pseudo"
-             [ngClass]="{'is-invalid': userForm.controls['username'].invalid && userForm.controls['username'].touched}">
-
-      <div class="invalid-feedback"
-           *ngIf="userForm.controls['username'].invalid && userForm.controls['username'].touched">
-        <p *ngIf="userForm.controls['username'].hasError('required')">
-          {{frErrSrv.setErrorMessage('required')}}
-        </p>
-        <p *ngIf="userForm.controls['username'].hasError('minlength')">
-          {{frErrSrv.setErrorMessage('minlength', 4)}}
-        </p>
-      </div>
-
     </div>
     <div class="form-group">
       <label for="password">Mot de passe</label>

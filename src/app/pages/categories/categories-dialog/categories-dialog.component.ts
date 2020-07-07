@@ -92,14 +92,14 @@ export class CategoriesDialogComponent implements OnInit {
     this.categoriesService.editCategorie(body, this.data.categorie.id)
       .pipe(take(1))
       .subscribe(
-        value => {
+        () => {
           this.ngxSpinner.hide();
           this.alertBoxService.alert({
             title: 'Modification',
             text: 'Opération terminé avec succé',
             icon: 'success'
           });
-          this.dialogRef.close(value);
+          this.dialogRef.close(body);
         },
         error => {
           this.ngxSpinner.hide();

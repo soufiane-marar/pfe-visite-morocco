@@ -1,1 +1,28 @@
-<p>cities-dialog works!</p>
+<h1 mat-dialog-title>{{data.isnew ? 'Ajout' : 'Modification'}}</h1>
+<div mat-dialog-content>
+  <form [formGroup]="formGrp">
+
+    <div class="form-group row">
+      <div class="form-group col-sm-12">
+        <label for="name">Nom ville</label>
+        <input type="text" class="form-control" id="name" formControlName="name"
+               placeholder="Entrez la désignation"
+               [ngClass]="{'is-invalid': formGrp.controls['name'].invalid && formGrp.controls['name'].touched}">
+
+        <div class="invalid-feedback" *ngIf="formGrp.controls['name'].invalid && formGrp.controls['name'].touched">
+          <p *ngIf="formGrp.controls['name'].hasError('required')">
+            {{frErrSrv.setErrorMessage('required')}}
+          </p>
+        </div>
+
+      </div>
+    </div><!--/.row-->
+  </form>
+</div>
+<div mat-dialog-actions align="end">
+  <div class="buttons btn-lg-group">
+    <button class="btn btn-primary" [disabled]="formGrp.invalid"
+            (click)="confirm()">{{data.isnew ? 'Ajouter' : 'Modifier'}}</button>
+    <button class="btn btn-secondary" (click)="close()">Annuler</button>
+  </div>
+</div>

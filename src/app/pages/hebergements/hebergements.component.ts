@@ -124,18 +124,7 @@ export class HebergementsComponent implements OnInit, OnDestroy {
       .subscribe(result => {
         console.log('The dialog was closed', result);
         if (result) {
-          if (isnew) {
-            this.hebergements.push(result);
-            this.hebergementsSource = new MatTableDataSource<any>(this.hebergements);
-          } else {
-            let index = this.hebergements.indexOf(hebergement);
-
-            if (index !== -1) {
-              this.hebergements[index] = result;
-            }
-
-            this.hebergementsSource = new MatTableDataSource<any>(this.hebergements);
-          }
+          this.initData();
         }
       });
   }

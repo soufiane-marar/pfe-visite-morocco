@@ -124,18 +124,7 @@ export class LoisirComponent implements OnInit, OnDestroy {
       .subscribe(result => {
         console.log('The dialog was closed', result);
         if (result) {
-          if (isnew) {
-            this.loisirs.push(result);
-            this.loisirsSource = new MatTableDataSource<any>(this.loisirs);
-          } else {
-            let index = this.loisirs.indexOf(loisir);
-
-            if (index !== -1) {
-              this.loisirs[index] = result;
-            }
-
-            this.loisirsSource = new MatTableDataSource<any>(this.loisirs);
-          }
+          this.initData();
         }
       });
   }

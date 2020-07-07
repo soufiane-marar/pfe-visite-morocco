@@ -124,18 +124,7 @@ export class InfosComponent implements OnInit, OnDestroy {
       .subscribe(result => {
         console.log('The dialog was closed', result);
         if (result) {
-          if (isnew) {
-            this.infos.push(result);
-            this.infosSource = new MatTableDataSource<any>(this.infos);
-          } else {
-            let index = this.infos.indexOf(info);
-
-            if (index !== -1) {
-              this.infos[index] = result;
-            }
-
-            this.infosSource = new MatTableDataSource<any>(this.infos);
-          }
+          this.initData();
         }
       });
   }

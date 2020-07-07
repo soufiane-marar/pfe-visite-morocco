@@ -63,4 +63,9 @@ export const navItems: INavData[] = [
     url: '/categories',
     icon: 'fa fa-cubes'
   },
+  {
+    name: 'Villes',
+    url: '/cities',
+    icon: 'fa fa-cubes'
+  },
 ];

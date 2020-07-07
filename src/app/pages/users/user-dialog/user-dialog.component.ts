@@ -34,11 +34,10 @@ export class UserDialogComponent implements OnInit {
 
     this.userForm = this.formBuilder.group(
       {
-        firstname: new FormControl(user ? user.firstname : '', [Validators.required, Validators.minLength(2)]),
-        lastname: new FormControl(user ? user.lastname : '', [Validators.required, Validators.minLength(2)]),
+        first_name: new FormControl(user ? user.first_name : '', [Validators.required, Validators.minLength(2)]),
+        last_name: new FormControl(user ? user.last_name : '', [Validators.required, Validators.minLength(2)]),
         email: new FormControl(user ? user.email : '', [Validators.required, Validators.email]),
-        username: new FormControl(user ? user.username : '', [Validators.required, Validators.minLength(4)]),
-        role_id: new FormControl(user ? user.role_id : null, [Validators.required]),
+        role: new FormControl(user ? user.role : null, [Validators.required]),
         password: new FormControl('', [Validators.required, Validators.minLength(6)]),
         password2: new FormControl('', [Validators.required, Validators.minLength(6)]),
       },
@@ -67,8 +66,14 @@ export class UserDialogComponent implements OnInit {
 
   private add(): void {
     let user: User = this.userForm.value;
+
+    // @ts-ignore
+    user.c_password = user.password2;
+
     // @ts-ignore
     delete user.password2;
+
+
     this.ngxSpinner.show();
     this.usersService.addUser(user)
       .pipe(take(1))
@@ -97,20 +102,30 @@ export class UserDialogComponent implements OnInit {
   private edit(): void {
     let user: User = this.userForm.value;
     // @ts-ignore
+    user.c_password = user.password2;
+
+    // @ts-ignore
     delete user.password2;
+
+ /*   if (user.email == this.data.user.email) {
+      delete user.email;
+    }*/
+
 
     this.ngxSpinner.show();
     this.usersService.editUser(user, this.data.user.id)
       .pipe(take(1))
       .subscribe(
         value => {
+          console.log(value);
           this.ngxSpinner.hide();
           this.alertBoxService.alert({
             title: 'Modification',
             text: 'Opération terminé avec succé',
             icon: 'success'
           });
-          this.dialogRef.close(value);
+          user.id = this.data.user.id;
+          this.dialogRef.close(user);
         },
         error => {
           this.ngxSpinner.hide();

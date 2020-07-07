@@ -13,6 +13,12 @@ export class UsersService {
   constructor(private http: HttpClient) {
   }
 
+  public readonly roles: Role[] = [
+    {libelle: 'admin'},
+    {libelle: 'user'},
+    {libelle: 'tourist'}
+  ];
+
   public getUsers(): Observable<User[]> {
     return this.http.get<User[]>(`${environment.api_url}/users`);
   }
@@ -33,18 +39,13 @@ export class UsersService {
     return this.http.delete<any>(`${environment.api_url}/users/${id}`);
   }
 
-  public getRoles(): Observable<Role[]> {
-    return this.http.get<Role[]>(`${environment.api_url}/roles`);
-  }
-
-  public getRole(id: number, roles: Role[]): Role {
-
-    for (let i = 0; i < roles.length; i++) {
-      if (roles[i].id == id) {
-        return roles[i];
+  public changePassword(pwd1: string, pwd2: string): Observable<any> {
+    return this.http.put<any>(`${environment.api_url}/user/changePwd`,
+      {
+        new_password: pwd1,
+        new_password2: pwd2
       }
-    }
-    return null;
+    );
   }
 
   public removeFromArray<T>(item: T, array: T[]): T[] {

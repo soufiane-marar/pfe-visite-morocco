@@ -11,6 +11,10 @@ bs-datepicker-container, bs-daterangepicker-container {
   z-index: 9998 !important;
 }
 
+.swal2-container {
+  z-index: 9999 !important;
+}
+
 .callout-purple {
   border-left-color: #8056cd;
 }

@@ -44,7 +44,7 @@ export class CategoriesComponent implements OnInit, OnDestroy {
         value => {
 
           this.ngxSpinner.hide();
-          this.categories = value;
+          this.categories = value['data'];
           this.dataSource = new MatTableDataSource<any>(this.categories);
         },
         error => {
@@ -120,13 +120,12 @@ export class CategoriesComponent implements OnInit, OnDestroy {
         console.log('The dialog was closed', result);
         if (result) {
           if (isnew) {
-            this.categories.push(result);
-            this.dataSource = new MatTableDataSource<any>(this.categories);
+            this.initData();
           } else {
             let index = this.categories.indexOf(categorie);
 
             if (index !== -1) {
-              this.categories[index] = result;
+              this.categories[index].name = result.name;
             }
 
             this.dataSource = new MatTableDataSource<any>(this.categories);

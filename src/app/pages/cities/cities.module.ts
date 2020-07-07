@@ -5,6 +5,11 @@ import {CitiesRoutingModule} from './cities-routing.module';
 import {CitiesComponent} from './cities.component';
 import {CitiesDialogComponent} from './cities-dialog/cities-dialog.component';
 import {CitiesService} from '../../services/cities.service';
+import {MatTableModule} from '@angular/material/table';
+import {AlertModule, TooltipModule} from 'ngx-bootstrap';
+import {EndroitService} from '../../services/endroit.service';
+import {MatDialogModule} from '@angular/material/dialog';
+import {ReactiveFormsModule} from '@angular/forms';
 
 
 @NgModule({
@@ -12,9 +17,14 @@ import {CitiesService} from '../../services/cities.service';
   entryComponents: [CitiesDialogComponent],
   imports: [
     CommonModule,
-    CitiesRoutingModule
+    CitiesRoutingModule,
+    MatTableModule,
+    TooltipModule.forRoot(),
+    AlertModule.forRoot(),
+    MatDialogModule,
+    ReactiveFormsModule
   ],
-  providers: [CitiesService]
+  providers: [CitiesService, EndroitService]
 })
 export class CitiesModule {
 }
