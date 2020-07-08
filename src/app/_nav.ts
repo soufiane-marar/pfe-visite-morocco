@@ -17,7 +17,8 @@ export const navItems: INavData[] = [
   {
     name: 'Hebergements',
     url: '/hebergements',
-    icon: 'fa fa-hotel'
+    icon: 'fa fa-hotel',
+    attributes: {hidden: true}
   },
   {
     name: 'Restaurants',

@@ -10,6 +10,7 @@ import {take, takeUntil} from 'rxjs/operators';
 import {MatTableDataSource} from '@angular/material/table';
 import {ShoppingsService} from '../../services/shoppings.service';
 import {ShoppingsDialogComponent} from './shoppings-dialog/shoppings-dialog.component';
+import {AuthService} from '../../services/login/auth.service';
 
 @Component({
   selector: 'app-shoppings',
@@ -28,6 +29,7 @@ export class ShoppingsComponent implements OnInit, OnDestroy {
   public categories: Categorie[] = [];
 
   constructor(public endroitService: EndroitService,
+              public authService: AuthService,
               private shoppingsService: ShoppingsService,
               private alertBoxService: AlertBoxService,
               private ngxSpinner: NgxSpinnerService,

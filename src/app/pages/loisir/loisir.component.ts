@@ -10,6 +10,7 @@ import {take, takeUntil} from 'rxjs/operators';
 import {MatTableDataSource} from '@angular/material/table';
 import {LoisirService} from '../../services/loisir.service';
 import {LoisirDialogComponent} from './loisir-dialog/loisir-dialog.component';
+import {AuthService} from '../../services/login/auth.service';
 
 @Component({
   selector: 'app-loisir',
@@ -28,6 +29,7 @@ export class LoisirComponent implements OnInit, OnDestroy {
   public categories: Categorie[] = [];
 
   constructor(public endroitService: EndroitService,
+              public authService: AuthService,
               private loisirService: LoisirService,
               private alertBoxService: AlertBoxService,
               private ngxSpinner: NgxSpinnerService,

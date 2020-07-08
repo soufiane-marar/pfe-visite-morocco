@@ -4,6 +4,7 @@ import {Observable} from 'rxjs';
 import * as jwt_decode from 'jwt-decode';
 import {HttpClient} from '@angular/common/http';
 import {environment} from '../../../environments/environment';
+import {Roles} from '../../utils/values';
 
 @Injectable({
   providedIn: 'root'
@@ -13,12 +14,13 @@ export class AuthService {
   constructor(private http: HttpClient) {
   }
 
-  /**
-   * @description check if is logged in
-   * @return boolean
-   */
-  public get loggedIn(): boolean {
-    return (localStorage.getItem(environment.token_key) !== null);
+
+  public isAdmin(role: string): boolean {
+    return role == Roles.ADMIN;
+  }
+
+  public isUser(role: string): boolean {
+    return role == Roles.USER;
   }
 
   /**

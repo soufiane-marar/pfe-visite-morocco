@@ -10,6 +10,7 @@ import {take, takeUntil} from 'rxjs/operators';
 import {MatTableDataSource} from '@angular/material/table';
 import {RestaurantService} from '../../services/restaurant.service';
 import {RestauDialogComponent} from './restau-dialog/restau-dialog.component';
+import {AuthService} from '../../services/login/auth.service';
 
 @Component({
   selector: 'app-restaurants',
@@ -30,6 +31,7 @@ export class RestaurantsComponent implements OnInit, OnDestroy {
   public restaurantsSource: any;
 
   constructor(public endroitService: EndroitService,
+              public authService: AuthService,
               private restaurantService: RestaurantService,
               private alertBoxService: AlertBoxService,
               private ngxSpinner: NgxSpinnerService,

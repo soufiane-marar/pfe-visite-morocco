@@ -8,8 +8,8 @@
                     (click)="initData()">
               <i class="icon-refresh"></i>
             </button>
-            <button type="button" class="btn btn-primary" tooltip="Ajouter un nouveau restaurant"
-                    (click)="addHebergements()">
+            <button type="button" class="btn btn-primary" tooltip="Ajouter un nouveau hébergement"
+                    (click)="addHebergements()" *ngIf="authService.isAdmin(authService.getSession().role)">
               <i class="icon-plus"></i>
             </button>
           </div>
@@ -59,7 +59,7 @@
                 </button>
                 <button type="button" class="btn btn-sm btn-outline-danger"
                         tooltip="Supprimer l'hebergement: {{element.name}}"
-                        (click)="deleteHebergement(element)">
+                        (click)="deleteHebergement(element)" *ngIf="authService.isAdmin(authService.getSession().role)">
                   <i class="icon-trash"></i>
                 </button>
               </td>

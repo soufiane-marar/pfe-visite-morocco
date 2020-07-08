@@ -8,6 +8,8 @@ import {P401Component} from './pages/error/401.component';
 import {LoginComponent} from './pages/login/login.component';
 import {AuthGuard} from './services/login/auth.guard';
 import {NotAuthGuard} from './services/login/not-auth.guard';
+import {Roles} from './utils/values';
+import {RoleGuard} from './utils/guards/role.guard';
 
 export const routes: Routes = [
   {
@@ -51,58 +53,91 @@ export const routes: Routes = [
       },
       {
         path: 'users',
-        canActivate: [AuthGuard],
-        loadChildren: () => import('./pages/users/users.module').then(m => m.UsersModule)
+        canActivate: [AuthGuard, RoleGuard],
+        loadChildren: () => import('./pages/users/users.module').then(m => m.UsersModule),
+        data: {
+          roles: [Roles.ADMIN]
+        }
       },
       {
         path: 'user-settings',
-        canActivate: [AuthGuard],
-        loadChildren: () => import('./pages/user-settings/user-settings.module').then(m => m.UserSettingsModule)
+        canActivate: [AuthGuard, RoleGuard],
+        loadChildren: () => import('./pages/user-settings/user-settings.module').then(m => m.UserSettingsModule),
+        data: {
+          roles: [Roles.ADMIN, Roles.USER]
+        }
       },
       {
         path: 'hebergements',
-        canActivate: [AuthGuard],
-        loadChildren: () => import('./pages/hebergements/hebergements.module').then(m => m.HebergementsModule)
+        canActivate: [AuthGuard, RoleGuard],
+        loadChildren: () => import('./pages/hebergements/hebergements.module').then(m => m.HebergementsModule),
+        data: {
+          roles: [Roles.ADMIN, Roles.USER]
+        }
       },
       {
         path: 'restaurants',
-        canActivate: [AuthGuard],
-        loadChildren: () => import('./pages/restaurants/restaurants.module').then(m => m.RestaurantsModule)
+        canActivate: [AuthGuard, RoleGuard],
+        loadChildren: () => import('./pages/restaurants/restaurants.module').then(m => m.RestaurantsModule),
+        data: {
+          roles: [Roles.ADMIN, Roles.USER]
+        }
       },
       {
         path: 'infos',
-        canActivate: [AuthGuard],
-        loadChildren: () => import('./pages/infos/infos.module').then(m => m.InfosModule)
+        canActivate: [AuthGuard, RoleGuard],
+        loadChildren: () => import('./pages/infos/infos.module').then(m => m.InfosModule),
+        data: {
+          roles: [Roles.ADMIN, Roles.USER]
+        }
       },
       {
         path: 'cultures',
-        canActivate: [AuthGuard],
-        loadChildren: () => import('./pages/cultures/cultures.module').then(m => m.CulturesModule)
+        canActivate: [AuthGuard, RoleGuard],
+        loadChildren: () => import('./pages/cultures/cultures.module').then(m => m.CulturesModule),
+        data: {
+          roles: [Roles.ADMIN, Roles.USER]
+        }
       },
       {
         path: 'events',
-        canActivate: [AuthGuard],
-        loadChildren: () => import('./pages/events/events.module').then(m => m.EvenementsModule)
+        canActivate: [AuthGuard, RoleGuard],
+        loadChildren: () => import('./pages/events/events.module').then(m => m.EvenementsModule),
+        data: {
+          roles: [Roles.ADMIN, Roles.USER]
+        }
       },
       {
         path: 'loisir',
-        canActivate: [AuthGuard],
-        loadChildren: () => import('./pages/loisir/loisir.module').then(m => m.LoisirModule)
+        canActivate: [AuthGuard, RoleGuard],
+        loadChildren: () => import('./pages/loisir/loisir.module').then(m => m.LoisirModule),
+        data: {
+          roles: [Roles.ADMIN, Roles.USER]
+        }
       },
       {
         path: 'shopping',
-        canActivate: [AuthGuard],
-        loadChildren: () => import('./pages/shoppings/shoppings.module').then(m => m.ShoppingsModule)
+        canActivate: [AuthGuard, RoleGuard],
+        loadChildren: () => import('./pages/shoppings/shoppings.module').then(m => m.ShoppingsModule),
+        data: {
+          roles: [Roles.ADMIN, Roles.USER]
+        }
       },
       {
         path: 'cities',
-        canActivate: [AuthGuard],
-        loadChildren: () => import('./pages/cities/cities.module').then(m => m.CitiesModule)
+        canActivate: [AuthGuard, RoleGuard],
+        loadChildren: () => import('./pages/cities/cities.module').then(m => m.CitiesModule),
+        data: {
+          roles: [Roles.ADMIN]
+        }
       },
       {
         path: 'categories',
-        canActivate: [AuthGuard],
-        loadChildren: () => import('./pages/categories/categories.module').then(m => m.CategoriesModule)
+        canActivate: [AuthGuard, RoleGuard],
+        loadChildren: () => import('./pages/categories/categories.module').then(m => m.CategoriesModule),
+        data: {
+          roles: [Roles.ADMIN]
+        }
       },
     ]
   },

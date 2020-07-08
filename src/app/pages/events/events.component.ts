@@ -10,6 +10,7 @@ import {take, takeUntil} from 'rxjs/operators';
 import {MatTableDataSource} from '@angular/material/table';
 import {EventsService} from '../../services/events.service';
 import {EventsDialogComponent} from './events-dialog/events-dialog.component';
+import {AuthService} from '../../services/login/auth.service';
 
 @Component({
   selector: 'app-events',
@@ -28,6 +29,7 @@ export class EventsComponent implements OnInit, OnDestroy {
   public categories: Categorie[] = [];
 
   constructor(public endroitService: EndroitService,
+              public authService: AuthService,
               private eventsService: EventsService,
               private alertBoxService: AlertBoxService,
               private ngxSpinner: NgxSpinnerService,

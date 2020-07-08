@@ -154,7 +154,7 @@
     </div><!--/.row-->
 
     <div class="form-group row">
-      <div class="form-group col-sm-4">
+      <div class="form-group col-sm-6">
         <label for="adresse1">Adresse 1</label>
         <input type="text" class="form-control" id="adresse1" formControlName="adresse1"
                [ngClass]="{'is-invalid': formGrp.controls['adresse1'].invalid && formGrp.controls['adresse1'].touched}">
@@ -167,7 +167,7 @@
           </p>
         </div>
       </div>
-      <div class="form-group col-sm-4">
+      <div class="form-group col-sm-6">
         <label for="adresse2">Adresse 2</label>
         <input type="text" class="form-control" id="adresse2" formControlName="adresse2"
                [ngClass]="{'is-invalid': formGrp.controls['adresse2'].invalid && formGrp.controls['adresse2'].touched}">
@@ -180,9 +180,12 @@
           </p>
         </div>
       </div>
-      <div class="form-group col-sm-4">
+
+    </div><!--/.row-->
+    <div class="form-group row">
+      <div class="form-group col-sm-12">
         <label for="description">Description</label>
-        <textarea class="form-control" formControlName="description" id="description"
+        <textarea class="form-control" formControlName="description" id="description" [rows]="5"
                   [ngClass]="{'is-invalid': formGrp.controls['description'].invalid && formGrp.controls['description'].touched}"></textarea>
         <div class="invalid-feedback"
              *ngIf="formGrp.controls['description'].invalid && formGrp.controls['description'].touched">

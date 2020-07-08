@@ -10,6 +10,7 @@ import {take, takeUntil} from 'rxjs/operators';
 import {MatTableDataSource} from '@angular/material/table';
 import {CulturesService} from '../../services/cultures.service';
 import {CulturesDialogComponent} from './cultures-dialog/cultures-dialog.component';
+import {AuthService} from '../../services/login/auth.service';
 
 @Component({
   selector: 'app-cultures',
@@ -28,6 +29,7 @@ export class CulturesComponent implements OnInit, OnDestroy {
   public categories: Categorie[] = [];
 
   constructor(public endroitService: EndroitService,
+              public authService: AuthService,
               private culturesService: CulturesService,
               private alertBoxService: AlertBoxService,
               private ngxSpinner: NgxSpinnerService,

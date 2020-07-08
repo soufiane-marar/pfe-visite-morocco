@@ -47,9 +47,14 @@ export class LoginComponent implements OnInit {
       .subscribe(
         value => {
           this.ngxSpinnerService.hide();
+          if (!this.authService.isAdmin(value.user.role) && !this.authService.isUser(value.user.role)) {
+            this.alertContent = `<strong>Erreur</strong> Vous ne possédez pas d'autorisation pour se connecter`;
+            this.hasError = true;
+            return;
+          }
+
           this.authService.setToken(value.access_token);
           this.authService.setSession(value.user);
-
           this.hasError = false;
           this.router.navigate(['']);
         },

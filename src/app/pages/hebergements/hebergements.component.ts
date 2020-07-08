@@ -10,6 +10,7 @@ import {forkJoin, Subject} from 'rxjs';
 import {take, takeUntil} from 'rxjs/operators';
 import {MatTableDataSource} from '@angular/material/table';
 import {HebergementDialogComponent} from './hebergement-dialog/hebergement-dialog.component';
+import {AuthService} from '../../services/login/auth.service';
 
 @Component({
   selector: 'app-hebergements',
@@ -28,6 +29,7 @@ export class HebergementsComponent implements OnInit, OnDestroy {
   public categories: Categorie[] = [];
 
   constructor(public endroitService: EndroitService,
+              public authService: AuthService,
               private hebergementsService: HebergementsService,
               private alertBoxService: AlertBoxService,
               private ngxSpinner: NgxSpinnerService,

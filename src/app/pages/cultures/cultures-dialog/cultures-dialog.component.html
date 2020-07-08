@@ -5,7 +5,8 @@
       <div class="form-group col-sm-12">
         <label for="name">Désignation</label>
         <input type="text" class="form-control" id="name" formControlName="name"
-               placeholder="Entrez la désignation" [ngClass]="{'is-invalid': formGrp.controls['name'].invalid && formGrp.controls['name'].touched}">
+               placeholder="Entrez la désignation"
+               [ngClass]="{'is-invalid': formGrp.controls['name'].invalid && formGrp.controls['name'].touched}">
 
         <div class="invalid-feedback" *ngIf="formGrp.controls['name'].invalid && formGrp.controls['name'].touched">
           <p *ngIf="formGrp.controls['name'].hasError('required')">
@@ -22,7 +23,8 @@
       <div class="form-group col-sm-3">
         <label for="startTime">Heure début</label>
         <timepicker id="startTime" formControlName="startTime" [showMeridian]="false"></timepicker>
-        <div class="invalid-feedback" *ngIf="formGrp.controls['startTime'].invalid && formGrp.controls['startTime'].touched">
+        <div class="invalid-feedback"
+             *ngIf="formGrp.controls['startTime'].invalid && formGrp.controls['startTime'].touched">
           <p *ngIf="formGrp.controls['startTime'].hasError('required')">
             {{frErrSrv.setErrorMessage('required')}}
           </p>
@@ -31,7 +33,8 @@
       <div class="form-group col-sm-3">
         <label for="endTime">Heure fin</label>
         <timepicker id="endTime" formControlName="endTime" [showMeridian]="false"></timepicker>
-        <div class="invalid-feedback" *ngIf="formGrp.controls['endTime'].invalid && formGrp.controls['endTime'].touched">
+        <div class="invalid-feedback"
+             *ngIf="formGrp.controls['endTime'].invalid && formGrp.controls['endTime'].touched">
           <p *ngIf="formGrp.controls['endTime'].hasError('required')">
             {{frErrSrv.setErrorMessage('required')}}
           </p>
@@ -44,7 +47,8 @@
       <div class="form-group col-sm-4">
         <label for="email">Email</label>
         <input type="text" class="form-control" id="email" formControlName="email"
-               placeholder="Entrez l'email" [ngClass]="{'is-invalid': formGrp.controls['email'].invalid && formGrp.controls['email'].touched}">
+               placeholder="Entrez l'email"
+               [ngClass]="{'is-invalid': formGrp.controls['email'].invalid && formGrp.controls['email'].touched}">
 
         <div class="invalid-feedback" *ngIf="formGrp.controls['email'].invalid && formGrp.controls['email'].touched">
           <p *ngIf="formGrp.controls['email'].hasError('email')">
@@ -55,9 +59,11 @@
       <div class="form-group col-sm-3">
         <label for="telephone">Tél</label>
         <input type="text" class="form-control" id="telephone" formControlName="telephone"
-               placeholder="Entrez le telephone" [ngClass]="{'is-invalid': formGrp.controls['telephone'].invalid && formGrp.controls['telephone'].touched}">
+               placeholder="Entrez le telephone"
+               [ngClass]="{'is-invalid': formGrp.controls['telephone'].invalid && formGrp.controls['telephone'].touched}">
 
-        <div class="invalid-feedback" *ngIf="formGrp.controls['telephone'].invalid && formGrp.controls['telephone'].touched">
+        <div class="invalid-feedback"
+             *ngIf="formGrp.controls['telephone'].invalid && formGrp.controls['telephone'].touched">
           <p *ngIf="formGrp.controls['telephone'].hasError('minlength')">
             {{frErrSrv.setErrorMessage('minlength', 10)}}
           </p>
@@ -66,12 +72,14 @@
       <div class="form-group col-sm-3">
         <label for="website">Site web</label>
         <input type="text" class="form-control" id="website" formControlName="website"
-               placeholder="Entrez le site web" [ngClass]="{'is-invalid': formGrp.controls['website'].invalid && formGrp.controls['website'].touched}">
+               placeholder="Entrez le site web"
+               [ngClass]="{'is-invalid': formGrp.controls['website'].invalid && formGrp.controls['website'].touched}">
       </div>
       <div class="form-group col-sm-2">
         <label for="zipcode">Zip code</label>
         <input type="text" class="form-control" id="zipcode" formControlName="zipcode" numbers-only
-               placeholder="Entrez le zip code" [ngClass]="{'is-invalid': formGrp.controls['zipcode'].invalid && formGrp.controls['zipcode'].touched}">
+               placeholder="Entrez le zip code"
+               [ngClass]="{'is-invalid': formGrp.controls['zipcode'].invalid && formGrp.controls['zipcode'].touched}">
       </div>
     </div><!--/.row-->
     <div class="form-group row">
@@ -82,7 +90,8 @@
           <option disabled [value]="null">-- Choisissez une ville</option>
           <option *ngFor="let item of data.cities" [value]="item.id">{{item.name}}</option>
         </select>
-        <div class="invalid-feedback" *ngIf="formGrp.controls['city_id'].invalid && formGrp.controls['city_id'].touched">
+        <div class="invalid-feedback"
+             *ngIf="formGrp.controls['city_id'].invalid && formGrp.controls['city_id'].touched">
           <p *ngIf="formGrp.controls['city_id'].hasError('required')">
             {{frErrSrv.setErrorMessage('required')}}
           </p>
@@ -95,7 +104,8 @@
           <option disabled [value]="null">-- Choisissez une catégorie</option>
           <option *ngFor="let item of data.categories" [value]="item.id">{{item.name}}</option>
         </select>
-        <div class="invalid-feedback" *ngIf="formGrp.controls['categorie_id'].invalid && formGrp.controls['categorie_id'].touched">
+        <div class="invalid-feedback"
+             *ngIf="formGrp.controls['categorie_id'].invalid && formGrp.controls['categorie_id'].touched">
           <p *ngIf="formGrp.controls['categorie_id'].hasError('required')">
             {{frErrSrv.setErrorMessage('required')}}
           </p>
@@ -144,7 +154,7 @@
       </div>
     </div><!--/.row-->
     <div class="form-group row">
-      <div class="form-group col-sm-4">
+      <div class="form-group col-sm-6">
         <label for="adresse1">Adresse 1</label>
         <input type="text" class="form-control" id="adresse1" formControlName="adresse1"
                [ngClass]="{'is-invalid': formGrp.controls['adresse1'].invalid && formGrp.controls['adresse1'].touched}">
@@ -157,7 +167,7 @@
           </p>
         </div>
       </div>
-      <div class="form-group col-sm-4">
+      <div class="form-group col-sm-6">
         <label for="adresse2">Adresse 2</label>
         <input type="text" class="form-control" id="adresse2" formControlName="adresse2"
                [ngClass]="{'is-invalid': formGrp.controls['adresse2'].invalid && formGrp.controls['adresse2'].touched}">
@@ -170,9 +180,12 @@
           </p>
         </div>
       </div>
-      <div class="form-group col-sm-4">
+
+    </div><!--/.row-->
+    <div class="form-group row">
+      <div class="form-group col-sm-12">
         <label for="description">Description</label>
-        <textarea class="form-control" formControlName="description" id="description"
+        <textarea class="form-control" formControlName="description" id="description" [rows]="5"
                   [ngClass]="{'is-invalid': formGrp.controls['description'].invalid && formGrp.controls['description'].touched}"></textarea>
         <div class="invalid-feedback"
              *ngIf="formGrp.controls['description'].invalid && formGrp.controls['description'].touched">
@@ -182,7 +195,7 @@
           </p>
         </div>
       </div>
-    </div><!--/.row-->
+    </div>
     <div class="form-group row">
       <div class="form-group col-sm-6">
         <label for="type">Type</label>
@@ -205,7 +218,8 @@
       <div class="form-group col-sm-3">
         <label for="files">Choisissez un ou plusieurs fichiers</label>
         <input type="file" class="form-control" id="files" multiple accept="image/x-png,image/jpeg"
-               (change)="fileChange($event)" [ngClass]="{'is-invalid': formGrp.controls['media'].invalid && formGrp.controls['media'].touched}">
+               (change)="fileChange($event)"
+               [ngClass]="{'is-invalid': formGrp.controls['media'].invalid && formGrp.controls['media'].touched}">
         <input type="hidden" class="form-control" formControlName="media">
         <div class="invalid-feedback" *ngIf="formGrp.controls['media'].invalid && formGrp.controls['media'].touched">
           <p *ngIf="formGrp.controls['media'].hasError('required')">

@@ -9,7 +9,7 @@
               <i class="icon-refresh"></i>
             </button>
             <button type="button" class="btn btn-primary" tooltip="Ajouter un nouveau restaurant"
-                    (click)="addRestaurant()">
+                    (click)="addRestaurant()" *ngIf="authService.isAdmin(authService.getSession().role)">
               <i class="icon-plus"></i>
             </button>
           </div>
@@ -61,7 +61,7 @@
                 </button>
                 <button type="button" class="btn btn-sm btn-outline-danger"
                         tooltip="Supprimer le restaurant: {{element.name}}"
-                        (click)="deleteRestaurant(element)">
+                        (click)="deleteRestaurant(element)" *ngIf="authService.isAdmin(authService.getSession().role)">
                   <i class="icon-trash"></i>
                 </button>
               </td>
