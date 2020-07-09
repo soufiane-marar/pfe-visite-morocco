@@ -1,26 +1,16 @@
 {
-  "name": "@coreui/coreui-free-angular-admin-template",
+  "name": "pfe-visite-morocco",
   "version": "2.9.0",
-  "description": "CoreUI Free Angular 2+ Admin Template",
+  "description": "PFE BACKOFFICE",
   "author": {
-    "name": "Łukasz Holeczek",
-    "url": "http://holeczek.pl",
-    "github": "https://github.com/mrholek",
-    "twitter": "https://twitter.com/lukaszholeczek"
+    "name": "Soufiane Marar",
+    "github": "https://github.com/soufiane-marar/pfe-visite-morocco"
   },
-  "contributors": [
-    {
-      "name": "Andrzej Kopański",
-      "url": "https://github.com/xidedix"
-    }
-  ],
-  "homepage": "https://coreui.io/angular",
-  "copyright": "Copyright 2020 creativeLabs Łukasz Holeczek",
   "license": "MIT",
   "scripts": {
     "ng": "ng",
     "postinstall": "ngcc --properties es2015 browser module main --first-only --create-ivy-entry-points",
-    "start": "ng serve",
+    "start": "node server.js",
     "build": "ng build --prod --aot --buildOptimizer --commonChunk --vendorChunk --optimization --progress",
     "test": "ng test",
     "lint": "ng lint",
@@ -47,6 +37,7 @@
     "bootstrap": "^4.3.1",
     "chart.js": "^2.9.2",
     "core-js": "^2.6.11",
+    "express": "^4.17.1",
     "flag-icon-css": "^3.4.6",
     "font-awesome": "^4.7.0",
     "jwt-decode": "^2.2.0",
