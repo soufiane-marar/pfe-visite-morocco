@@ -200,7 +200,7 @@
     <div class="form-group row">
       <div class="form-group col-sm-6">
         <label for="specialite">Spécialité</label>
-        <mat-select formControlName="specialite" id="specialite" multiple>
+        <mat-select formControlName="specialite" id="specialite" multiple placeholder="Choisissez une spécialité">
           <mat-option disabled [value]="null">-- Choisissez une spécialité</mat-option>
           <mat-option value="marocaine">Marocaine</mat-option>
           <mat-option value="francaise">Francaise</mat-option>
@@ -209,8 +209,8 @@
           <mat-option value="américaine">Américaine</mat-option>
         </mat-select>
         <div class="invalid-feedback"
-             *ngIf="formGrp.controls['specialite'].invalid && formGrp.controls['specialite'].touched">
-          <p *ngIf="formGrp.controls['specialite'].hasError('required')">
+             *ngIf="formGrp.controls['specialite'].invalid || formGrp.controls['specialite'].value == null">
+          <p>
             {{frErrSrv.setErrorMessage('required')}}
           </p>
         </div>
@@ -246,20 +246,9 @@
         <input type="file" class="form-control" id="files" multiple accept="image/x-png,image/jpeg"
                (change)="fileChange($event)">
         <input type="hidden" class="form-control" formControlName="media">
-        <div class="invalid-feedback" *ngIf="formGrp.controls['media'].invalid && formGrp.controls['media'].touched">
-          <p *ngIf="formGrp.controls['media'].hasError('required')">
-            {{frErrSrv.setErrorMessage('required')}}
-          </p>
-          <p *ngIf="formGrp.controls['media'].hasError('img_type')">
-            {{formGrp.controls['media'].getError('img_type')}}
-          </p>
-          <p *ngIf="formGrp.controls['media'].hasError('img_size')">
-            {{formGrp.controls['media'].getError('img_size')}}
-          </p>
-          <p *ngIf="formGrp.controls['media'].hasError('img_dimentions')">
-            {{formGrp.controls['media'].getError('img_dimentions')}}
-          </p>
-        </div>
+        <span class="help-block font-weight-bold text-black-50 pt-2">
+          {{media.length == 1 ? media.length + ' sélectionne' : media.length + ' sélectionnes'}} !
+        </span>
       </div>
       <div class="form-group col-sm-9" *ngIf="media.length>0">
         <div class="row">

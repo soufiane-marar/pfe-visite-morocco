@@ -109,11 +109,7 @@ export class IndexComponent implements OnInit, OnDestroy {
         error => {
           this.ngxSpinner.hide();
           console.log(error);
-          this.alertBoxService.alert({
-            title: 'Données',
-            text: error.message,
-            icon: 'error'
-          });
+          this.alertBoxService.error(error);
         }
       );
   }
@@ -147,11 +143,7 @@ export class IndexComponent implements OnInit, OnDestroy {
         error => {
           this.ngxSpinner.hide();
           console.log(error);
-          this.alertBoxService.alert({
-            title: 'Données',
-            text: error.message,
-            icon: 'error'
-          });
+          this.alertBoxService.error(error);
         }
       );
   }

@@ -3,11 +3,12 @@ import {HttpErrorResponse, HttpEvent, HttpHandler, HttpInterceptor, HttpRequest}
 import {Observable, throwError} from 'rxjs';
 import {catchError, map} from 'rxjs/operators';
 import {environment} from '../../environments/environment';
+import {AlertBoxService} from './alert-box.service';
 
 @Injectable()
 export class HttpConfigInterceptor implements HttpInterceptor {
 
-  constructor() {
+  constructor(private alertBoxService: AlertBoxService) {
   }
 
   /**

@@ -9,6 +9,7 @@ import {UserDialogComponent} from './user-dialog/user-dialog.component';
 import {MatTableDataSource} from '@angular/material/table';
 import {AlertBoxService} from '../../utils/alert-box.service';
 import {NgxSpinnerService} from 'ngx-spinner';
+import {AuthService} from '../../services/login/auth.service';
 
 @Component({
   selector: 'app-users',
@@ -29,6 +30,7 @@ export class UsersComponent implements OnInit, OnDestroy {
 
   constructor(public usersService: UsersService,
               private alertBoxService: AlertBoxService,
+              private authService: AuthService,
               private ngxSpinner: NgxSpinnerService,
               public dialog: MatDialog) {
   }
@@ -51,16 +53,19 @@ export class UsersComponent implements OnInit, OnDestroy {
 
           this.ngxSpinner.hide();
           this.users = value['data'];
+
+          for (let i = 0; i < this.users.length; i++) {
+            if (this.users[i].email == this.authService.getSession().email) {
+              this.users.splice(i, 1);
+            }
+          }
+
           this.usersSource = new MatTableDataSource<User>(this.users);
         },
         error => {
           this.ngxSpinner.hide();
           console.log(error);
-          this.alertBoxService.alert({
-            title: 'Données',
-            text: error.message,
-            icon: 'error'
-          });
+          this.alertBoxService.error(error);
         }
       );
   }
@@ -116,11 +121,7 @@ export class UsersComponent implements OnInit, OnDestroy {
                 this.ngxSpinner.hide();
                 console.log(error);
 
-                this.alertBoxService.alert({
-                  title: 'Suppression',
-                  text: error.message,
-                  icon: 'error'
-                });
+                this.alertBoxService.error(error);
               }
             );
         }

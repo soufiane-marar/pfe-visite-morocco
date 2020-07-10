@@ -64,13 +64,17 @@ export class HebergementDialogComponent implements OnInit {
         spa: new FormControl(hbg ? hbg.extra.spa : false),
         fitness: new FormControl(hbg ? hbg.extra.fitness : false),
 
-        media: new FormControl(hbg ? hbg.media.length + ' images' : null, [Validators.required]),
+        media: new FormControl(hbg ? hbg.media.length + ' images' : null),
       },
       {
         validators: [CustomValidators.CheckLatitude, CustomValidators.CheckLongitude,
           CustomValidators.CheckRanking, CustomValidators.CheckRooms]
       }
     );
+
+    if (!this.data.isnew) {
+      this.alertBoxService.markFormGroupTouched(this.formGrp);
+    }
   }
 
 
@@ -85,7 +89,7 @@ export class HebergementDialogComponent implements OnInit {
     }
 
     if (this.media.length == 0) {
-      this.alertBoxService.alert({icon: 'warning', text: 'Veuillez ajouter ou moins une image !'});
+      this.alertBoxService.alert({icon: 'warning', html: '<p>Veuillez ajouter ou moins une image avec les critères suivantes : </p><p class="font-weight-bold">Dimension : 700x400px<br/>Taille : 50KO</p>'});
       return;
     }
 
@@ -260,11 +264,7 @@ export class HebergementDialogComponent implements OnInit {
         error => {
           this.ngxSpinner.hide();
           console.log(error);
-          this.alertBoxService.alert({
-            title: 'Ajout',
-            text: error.message,
-            icon: 'error',
-          });
+          this.alertBoxService.error(error);
         }
       );
   }
@@ -292,11 +292,7 @@ export class HebergementDialogComponent implements OnInit {
         error => {
           this.ngxSpinner.hide();
           console.log(error);
-          this.alertBoxService.alert({
-            title: 'Modification',
-            text: error.message,
-            icon: 'error'
-          });
+          this.alertBoxService.error(error);
         }
       );
   }

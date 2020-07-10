@@ -36,6 +36,10 @@ export class CitiesDialogComponent implements OnInit {
       }
     );
 
+    if (!this.data.isnew) {
+      this.alertBoxService.markFormGroupTouched(this.formGrp);
+    }
+
   }
 
   public close(): void {
@@ -75,11 +79,7 @@ export class CitiesDialogComponent implements OnInit {
         error => {
           this.ngxSpinner.hide();
           console.log(error);
-          this.alertBoxService.alert({
-            title: 'Ajout',
-            text: error.message,
-            icon: 'error'
-          });
+          this.alertBoxService.error(error);
         }
       );
   }
@@ -104,11 +104,7 @@ export class CitiesDialogComponent implements OnInit {
         error => {
           this.ngxSpinner.hide();
           console.log(error);
-          this.alertBoxService.alert({
-            title: 'Modification',
-            text: error.message,
-            icon: 'error'
-          });
+          this.alertBoxService.error(error);
         }
       );
   }

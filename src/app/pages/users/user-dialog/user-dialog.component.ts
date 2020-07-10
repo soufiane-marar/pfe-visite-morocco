@@ -44,6 +44,9 @@ export class UserDialogComponent implements OnInit {
       {validator: CustomValidators.MatchPasswords}
     );
 
+    if (!this.data.isnew) {
+      this.alertBoxService.markFormGroupTouched(this.userForm);
+    }
   }
 
 
@@ -90,11 +93,7 @@ export class UserDialogComponent implements OnInit {
         error => {
           this.ngxSpinner.hide();
           console.log(error);
-          this.alertBoxService.alert({
-            title: 'Ajout',
-            text: error.message,
-            icon: 'error'
-          });
+          this.alertBoxService.error(error);
         }
       );
   }
@@ -107,9 +106,9 @@ export class UserDialogComponent implements OnInit {
     // @ts-ignore
     delete user.password2;
 
- /*   if (user.email == this.data.user.email) {
-      delete user.email;
-    }*/
+    /*   if (user.email == this.data.user.email) {
+         delete user.email;
+       }*/
 
 
     this.ngxSpinner.show();
@@ -130,11 +129,7 @@ export class UserDialogComponent implements OnInit {
         error => {
           this.ngxSpinner.hide();
           console.log(error);
-          this.alertBoxService.alert({
-            title: 'Modification',
-            text: error.message,
-            icon: 'error'
-          });
+          this.alertBoxService.error(error);
         }
       );
   }

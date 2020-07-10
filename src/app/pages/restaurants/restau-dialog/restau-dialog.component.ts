@@ -39,6 +39,7 @@ export class RestauDialogComponent implements OnInit {
     let specialite: string[] = [], prixCarte = null, prixMoyenne = null;
     if (hbg && hbg.extra) {
       specialite = hbg.extra.specialite.toString().split(',');
+      specialite = specialite.length > 0 ? specialite : null;
       prixCarte = hbg.extra.prixCarte;
       prixMoyenne = hbg.extra.prixMoyenne;
     }
@@ -65,10 +66,14 @@ export class RestauDialogComponent implements OnInit {
         specialite: new FormControl(specialite, [Validators.required]),
         prixCarte: new FormControl(prixCarte, [Validators.required]),
         prixMoyenne: new FormControl(prixMoyenne, [Validators.required]),
-        media: new FormControl(hbg ? hbg.media.length + ' images' : null, [Validators.required]),
+        media: new FormControl(hbg ? hbg.media.length + ' images' : null),
       },
       {validators: [CustomValidators.CheckLatitude, CustomValidators.CheckLongitude]}
     );
+
+    if (!this.data.isnew) {
+      this.alertBoxService.markFormGroupTouched(this.formGrp);
+    }
   }
 
 
@@ -83,7 +88,10 @@ export class RestauDialogComponent implements OnInit {
     }
 
     if (this.media.length == 0) {
-      this.alertBoxService.alert({icon: 'warning', text: 'Veuillez ajouter ou moins une image !'});
+      this.alertBoxService.alert({
+        icon: 'warning',
+        html: '<p>Veuillez ajouter ou moins une image avec les critères suivantes : </p><p class="font-weight-bold">Dimension : 700x400px<br/>Taille : 50KO</p>'
+      });
       return;
     }
 
@@ -259,11 +267,7 @@ export class RestauDialogComponent implements OnInit {
         error => {
           this.ngxSpinner.hide();
           console.log(error);
-          this.alertBoxService.alert({
-            title: 'Ajout',
-            text: error.message,
-            icon: 'error'
-          });
+          this.alertBoxService.error(error);
         }
       );
   }
@@ -293,12 +297,9 @@ export class RestauDialogComponent implements OnInit {
         error => {
           this.ngxSpinner.hide();
           console.log(error);
-          this.alertBoxService.alert({
-            title: 'Modification',
-            text: error.message,
-            icon: 'error'
-          });
+          this.alertBoxService.error(error);
         }
       );
   }
+
 }

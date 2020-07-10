@@ -60,11 +60,7 @@ export class RestaurantsComponent implements OnInit, OnDestroy {
         error => {
           this.ngxSpinner.hide();
           console.log(error);
-          this.alertBoxService.alert({
-            title: 'Données',
-            text: error.message,
-            icon: 'error'
-          });
+          this.alertBoxService.error(error);
         }
       );
   }
@@ -107,11 +103,7 @@ export class RestaurantsComponent implements OnInit, OnDestroy {
                 this.ngxSpinner.hide();
                 console.log(error);
 
-                this.alertBoxService.alert({
-                  title: 'Suppression',
-                  text: error.message,
-                  icon: 'error'
-                });
+                this.alertBoxService.error(error);
               }
             );
         }

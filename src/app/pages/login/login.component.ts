@@ -61,8 +61,11 @@ export class LoginComponent implements OnInit {
         error => {
           this.ngxSpinnerService.hide();
           console.error('Error de serveur !', error);
-
-          this.alertContent = `<strong>Erreur(${error.status}), ${error.statusText}</strong> ${error.error.message}`;
+          if (error.status == 500) {
+            this.alertContent = `<strong>${error.status} ${error.statusText} !</strong> ${error.error.message}.`;
+          } else {
+            this.alertContent = `<strong>${error.status} ${error.statusText} !</strong> Email ou mot de passe incorrect.`;
+          }
           this.hasError = true;
         }
       );
