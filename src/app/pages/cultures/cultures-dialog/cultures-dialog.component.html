@@ -120,6 +120,22 @@
         </button>
       </div>
       <div class="form-group col-sm-5">
+        <label for="latitude">Latitude</label>
+        <input type="text" class="form-control" id="latitude" formControlName="latitude" numbers-only [decimals]="15"
+               [ngClass]="{'is-invalid': formGrp.controls['latitude'].invalid && formGrp.controls['latitude'].touched}">
+        <div class="invalid-feedback"
+             *ngIf="formGrp.controls['latitude'].invalid && formGrp.controls['latitude'].touched">
+          <p
+            *ngIf="formGrp.controls['latitude'].hasError('required')">
+            latitude est obligatoire !
+          </p>
+          <p
+            *ngIf="formGrp.controls['latitude'].hasError('invalid_val')">
+            Latitude est invalide !
+          </p>
+        </div>
+      </div>
+      <div class="form-group col-sm-5">
         <label for="longitude">Longitude</label>
         <input type="text" class="form-control" id="longitude" formControlName="longitude" numbers-only [decimals]="15"
                [ngClass]="{'is-invalid': formGrp.controls['longitude'].invalid && formGrp.controls['longitude'].touched}">
@@ -133,22 +149,6 @@
           <p
             *ngIf="formGrp.controls['longitude'].hasError('invalid_val')">
             Longitude est invalide !
-          </p>
-        </div>
-      </div>
-      <div class="form-group col-sm-5">
-        <label for="latitude">Latitude</label>
-        <input type="text" class="form-control" id="latitude" formControlName="latitude" numbers-only [decimals]="15"
-               [ngClass]="{'is-invalid': formGrp.controls['latitude'].invalid && formGrp.controls['latitude'].touched}">
-        <div class="invalid-feedback"
-             *ngIf="formGrp.controls['latitude'].invalid && formGrp.controls['latitude'].touched">
-          <p
-            *ngIf="formGrp.controls['latitude'].hasError('required')">
-            latitude est obligatoire !
-          </p>
-          <p
-            *ngIf="formGrp.controls['latitude'].hasError('invalid_val')">
-            Latitude est invalide !
           </p>
         </div>
       </div>
@@ -205,6 +205,7 @@
           <option value="Mounuments">Mounuments</option>
           <option value="Musées">Musées</option>
           <option value="Galeries">Galeries</option>
+          <option value="Autres">Autres</option>
         </select>
         <div class="invalid-feedback" *ngIf="formGrp.controls['type'].invalid && formGrp.controls['type'].touched">
           <p *ngIf="formGrp.controls['type'].hasError('required')">
@@ -221,7 +222,7 @@
                [ngClass]="{'is-invalid': formGrp.controls['media'].invalid}">
         <input type="hidden" class="form-control" formControlName="media">
         <span class="help-block font-weight-bold text-black-50 pt-2">
-          {{media.length==1?media.length+' sélectionne':media.length+' sélectionnes'}} !
+          {{media.length == 1 ? media.length + ' sélectionne' : media.length + ' sélectionnes'}} !
         </span>
       </div>
       <div class="form-group col-sm-9" *ngIf="media.length>0">

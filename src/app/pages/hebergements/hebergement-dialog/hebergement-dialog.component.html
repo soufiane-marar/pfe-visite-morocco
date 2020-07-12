@@ -119,6 +119,22 @@
         </button>
       </div>
       <div class="form-group col-sm-5">
+        <label for="latitude">Latitude</label>
+        <input type="text" class="form-control" id="latitude" formControlName="latitude" numbers-only [decimals]="15"
+               [ngClass]="{'is-invalid': formGrp.controls['latitude'].invalid && formGrp.controls['latitude'].touched}">
+        <div class="invalid-feedback"
+             *ngIf="formGrp.controls['latitude'].invalid && formGrp.controls['latitude'].touched">
+          <p
+            *ngIf="formGrp.controls['latitude'].hasError('required')">
+            latitude est obligatoire !
+          </p>
+          <p
+            *ngIf="formGrp.controls['latitude'].hasError('invalid_val')">
+            Latitude est invalide !
+          </p>
+        </div>
+      </div>
+      <div class="form-group col-sm-5">
         <label for="longitude">Longitude</label>
         <input type="text" class="form-control" id="longitude" formControlName="longitude" numbers-only [decimals]="15"
                [ngClass]="{'is-invalid': formGrp.controls['longitude'].invalid && formGrp.controls['longitude'].touched}">
@@ -132,22 +148,6 @@
           <p
             *ngIf="formGrp.controls['longitude'].hasError('invalid_val')">
             Longitude est invalide !
-          </p>
-        </div>
-      </div>
-      <div class="form-group col-sm-5">
-        <label for="latitude">Latitude</label>
-        <input type="text" class="form-control" id="latitude" formControlName="latitude" numbers-only [decimals]="15"
-               [ngClass]="{'is-invalid': formGrp.controls['latitude'].invalid && formGrp.controls['latitude'].touched}">
-        <div class="invalid-feedback"
-             *ngIf="formGrp.controls['latitude'].invalid && formGrp.controls['latitude'].touched">
-          <p
-            *ngIf="formGrp.controls['latitude'].hasError('required')">
-            latitude est obligatoire !
-          </p>
-          <p
-            *ngIf="formGrp.controls['latitude'].hasError('invalid_val')">
-            Latitude est invalide !
           </p>
         </div>
       </div>
