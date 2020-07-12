@@ -192,10 +192,9 @@
         <select class="form-control" id="type" formControlName="type"
                 [ngClass]="{'is-invalid': formGrp.controls['type'].invalid && formGrp.controls['type'].touched}">
           <option disabled [value]="null">-- Choisissez un type</option>
-          <option value="type1">type1</option>
-          <option value="type2">type2</option>
-          <option value="type3">type3</option>
-          <option value="type4">type4</option>
+          <option value="Rues Commerçantes">Rues Commerçantes</option>
+          <option value="Centres commerciaux">Centres commerciaux</option>
+          <option value="Artisanat">Artisanat</option>
         </select>
         <div class="invalid-feedback" *ngIf="formGrp.controls['type'].invalid && formGrp.controls['type'].touched">
           <p *ngIf="formGrp.controls['type'].hasError('required')">

@@ -3,6 +3,7 @@ import Swal, {SweetAlertOptions} from 'sweetalert2';
 import {HttpErrorResponse} from '@angular/common/http';
 import {FormGroup} from '@angular/forms';
 
+
 @Injectable({
   providedIn: 'root'
 })
@@ -29,20 +30,30 @@ export class AlertBoxService {
    */
   error(error: HttpErrorResponse) {
     let message: string = '';
-
+    console.log(Array.isArray(error.error.errors));
     if (error.status == 500) {
       message = '<p>' + error.error.message + '</p>';
     } else {
       message += '<p>';
 
-      for (let prop in error.error.errors) {
-        message += prop + ' : ' + error.error.errors[prop][0] + '<br/>';
+      if (error.error.errors) {
+        if (Array.isArray(error.error.errors)) {
+          for (let i = 0; i < error.error.errors.length; i++) {
+            message += error.error.errors[i] + '<br/>';
+          }
+        } else {
+          for (let prop in error.error.errors) {
+            message += prop + ' : ' + error.error.errors[prop][0] + '<br/>';
+          }
+        }
+      } else {
+        message += 'Oops, something went wrong ... try later !';
       }
       message += '</p>';
     }
 
     if (message.length == 0) {
-      message = '<p>Oops, somthing went wrong ... try later !</p>';
+      message = '<p>Oops, something went wrong ... try later !</p>';
     }
 
     Swal.fire({

@@ -21,7 +21,7 @@ export class HebergementsComponent implements OnInit, OnDestroy {
 
   private subject = new Subject<void>();
 
-  public displayedColumns: string[] = ['logo', 'reference', 'name', 'type', 'city', 'actions'];
+  public displayedColumns: string[] = [ 'reference', 'name', 'type', 'city', 'actions'];
   public hebergementsSource: any;
 
   public hebergements: any[] = [];

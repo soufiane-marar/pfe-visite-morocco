@@ -4,6 +4,7 @@ import {ErrorMessageService} from '../../../utils/error-message.service';
 import {AlertBoxService} from '../../../utils/alert-box.service';
 import {NgxSpinnerService} from 'ngx-spinner';
 import {MAT_DIALOG_DATA, MatDialog, MatDialogRef} from '@angular/material/dialog';
+import {environment} from '../../../../environments/environment';
 import * as moment from 'moment';
 import {CustomValidators} from '../../../validators/custom.validator';
 import {MapDialogComponent} from '../../../components/map-dialog/map-dialog.component';
@@ -44,7 +45,7 @@ export class HebergementDialogComponent implements OnInit {
         endTime: new FormControl(hbg ? moment().format('YYYY-MM-DDT') + hbg.endTime : null, [Validators.required]),
         description: new FormControl(hbg ? hbg.description : null, [Validators.minLength(15)]),
         adresse1: new FormControl(hbg ? hbg.adresse1 : null, [Validators.required]),
-        adresse2: new FormControl(hbg ? hbg.adresse2 : null),
+        adresse2: new FormControl(hbg ? hbg.adresse2 : ''),
         email: new FormControl(hbg ? hbg.email : null, [Validators.email]),
         telephone: new FormControl(hbg ? hbg.telephone : null, [Validators.minLength(10)]),
         website: new FormControl(hbg ? hbg.website : null),
@@ -89,7 +90,9 @@ export class HebergementDialogComponent implements OnInit {
     }
 
     if (this.media.length == 0) {
-      this.alertBoxService.alert({icon: 'warning', html: '<p>Veuillez ajouter ou moins une image avec les critères suivantes : </p><p class="font-weight-bold">Dimension : 700x400px<br/>Taille : 50KO</p>'});
+      this.alertBoxService.alert({icon: 'warning', html: `<p>Veuillez ajouter ou moins une image avec les critères suivantes : </p>
+<p class="font-weight-bold">Dimension : ${environment.imageValidation.width}x${environment.imageValidation.height}px<br/>
+Taille : ${environment.imageValidation.size / 1000}Ko</p>`});
       return;
     }
 
@@ -162,7 +165,7 @@ export class HebergementDialogComponent implements OnInit {
     let hasError: boolean = false;
     let errors: any = null;
     for (let i = 0; i < event.target.files.length; i++) {
-      this.checkImageDimensions(event.target.files[i], 700, 400, 50000)
+      this.checkImageDimensions(event.target.files[i], environment.imageValidation.width, environment.imageValidation.height, environment.imageValidation.size)
         .then(() => {
           if (hasError) {
             return;
@@ -241,6 +244,8 @@ export class HebergementDialogComponent implements OnInit {
   private add(): void {
     let body: any = this.formGrp.value;
 
+
+
     body.media = this.media;
     body.startTime = moment(body.startTime).format('HH:mm:ss');
     body.endTime = moment(body.endTime).format('HH:mm:ss');
@@ -271,6 +276,8 @@ export class HebergementDialogComponent implements OnInit {
 
   private edit(): void {
     let body: any = this.formGrp.value;
+
+
 
     body.media = this.media;
     body.startTime = moment(body.startTime).format('HH:mm:ss');

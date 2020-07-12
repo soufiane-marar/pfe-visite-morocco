@@ -229,10 +229,10 @@
         <select class="form-control" id="type" formControlName="type"
                 [ngClass]="{'is-invalid': formGrp.controls['type'].invalid && formGrp.controls['type'].touched}">
           <option disabled [value]="null">-- Choisissez un type</option>
-          <option value="type1">type1</option>
-          <option value="type2">type2</option>
-          <option value="type3">type3</option>
-          <option value="type4">type4</option>
+          <option value="Festival">Festival</option>
+          <option value="Moussem">Moussem</option>
+          <option value="Fête">Fête</option>
+          <option value="Autre">Autre</option>
         </select>
         <div class="invalid-feedback" *ngIf="formGrp.controls['type'].invalid && formGrp.controls['type'].touched">
           <p *ngIf="formGrp.controls['type'].hasError('required')">

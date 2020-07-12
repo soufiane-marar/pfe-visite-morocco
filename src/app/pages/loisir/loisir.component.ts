@@ -21,7 +21,7 @@ export class LoisirComponent implements OnInit, OnDestroy {
 
   private subject = new Subject<void>();
 
-  public displayedColumns: string[] = ['logo', 'reference', 'name', 'type', 'city', 'actions'];
+  public displayedColumns: string[] = [ 'reference', 'name', 'type', 'city', 'actions'];
   public loisirsSource: any;
 
   public loisirs: any[] = [];

@@ -21,7 +21,7 @@ export class RestaurantsComponent implements OnInit, OnDestroy {
 
   private subject = new Subject<void>();
 
-  public displayedColumns: string[] = ['logo', 'reference', 'name', 'specialite', 'city', 'actions'];
+  public displayedColumns: string[] = ['reference', 'name', 'specialite', 'city', 'actions'];
 
   public restaurants: any[] = [];
   public cities: City[] = [];

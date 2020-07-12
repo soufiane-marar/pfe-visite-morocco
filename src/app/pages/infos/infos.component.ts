@@ -21,7 +21,7 @@ export class InfosComponent implements OnInit, OnDestroy {
 
   private subject = new Subject<void>();
 
-  public displayedColumns: string[] = ['logo', 'reference', 'name', 'type', 'city', 'actions'];
+  public displayedColumns: string[] = [ 'reference', 'name', 'type', 'city', 'actions'];
   public infosSource: any;
 
   public infos: any[] = [];

@@ -8,5 +8,10 @@ export const environment = {
   api_url: 'https://apiguidetravel.herokuapp.com/api/v1',
   //api_url: 'http://localhost:3000',
   token_key: 'access_token',
-  session_name: 'user-session'
+  session_name: 'user-session',
+  imageValidation: {
+    width: 700,
+    height: 400,
+    size: 60000
+  }
 };
